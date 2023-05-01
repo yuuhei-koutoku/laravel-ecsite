@@ -34,7 +34,7 @@ class OwnersController extends Controller
         // var_dump($q_first);
 
         // dd($e_all, $q_get, $q_first, $c_test);
-        $owners = Owner::select('name', 'email', 'created_at')->get();
+        $owners = Owner::select('id', 'name', 'email', 'created_at')->get();
         return view('admin.owners.index', compact('owners'));
     }
 
@@ -92,7 +92,9 @@ class OwnersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $owner = Owner::findOrFail($id);
+        // dd($owner);
+        return view('admin.owners.edit', compact('owner'));
     }
 
     /**
@@ -104,7 +106,18 @@ class OwnersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // バリデーションを実装予定（セクション5 レクチャー63に該当する）
+        // メールアドレスがユニークなので、変更前のメールアドレスと同じ場合の処理について、検討する必要あり
+        // 「更新する」ボタンが押されてバリデーションが効いた場合、view側ではヘルパ関数oldを用いる
+
+        $owner = Owner::findOrFail($id);
+        $owner->name = $request->name;
+        $owner->email = $request->email;
+        $owner->password = Hash::make($request->password);
+        $owner->save();
+
+        return to_route('admin.owners.index')
+        ->with('message', 'オーナー情報を更新しました。');
     }
 
     /**
