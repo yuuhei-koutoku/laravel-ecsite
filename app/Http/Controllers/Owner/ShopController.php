@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Shop;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use InterventionImage;
+use App\Http\Requests\UploadImageRequest;
+use App\Services\ImageService;
 
 class ShopController extends Controller
 {
@@ -40,11 +44,26 @@ class ShopController extends Controller
 
     public function edit($id)
     {
+        $shop = Shop::findOrFail($id);
 
+        return view('owner.shops.edit', compact('shop'));
     }
 
-    public function update(Request $request, $id)
+    public function update(UploadImageRequest $request, $id)
     {
+        $imageFile = $request->image;
+        if (!is_null($imageFile) && $imageFile->isValid()) {
+            $fileNameToStore = ImageService::upload($imageFile, 'shops');
+            // // Storage::putFile('public/shops', $imageFile); // リサイズなしの場合
+            // $fileName = uniqid(rand() . '_');
+            // $extension = $imageFile->extension();
+            // $fileNameToStore = $fileName . '.' . $extension;
+            // $resizedImage = InterventionImage::make($imageFile)->resize(1920, 1080)->encode();
+            // // dd($imageFile, $resizedImage);
 
+            // Storage::put('public/shops/' . $fileNameToStore, $resizedImage);
+        }
+
+        return to_route('owner.shops.index');
     }
 }
