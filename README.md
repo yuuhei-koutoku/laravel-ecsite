@@ -50,6 +50,10 @@ git clone https://github.com/yuuhei-koutoku/laravel-ecsite.git
 php artisan migrate --seed
 ```
 
+### 3. 画像ダミーデータの設定
+
+画像のダミーデータは public/images フォルダ内に sample1.jpg 〜 sample6.jpg として保存しています。`php artisan storage:link` で storage フォルダにリンク後、storage/app/public/products フォルダ内に保存すると表示されます。（products フォルダがない場合は作成してください。）
+
 ### 3. 簡易サーバーを起動
 
 -   バックエンド
