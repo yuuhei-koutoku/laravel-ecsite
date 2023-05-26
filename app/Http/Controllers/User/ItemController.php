@@ -33,15 +33,6 @@ class ItemController extends Controller
 
     public function index(Request $request)
     {
-        // dd($request);
-
-        // 同期で送信
-        // Mail::to('test@example.com')
-        // ->send(new TestMail());
-
-        // 非同期で送信
-        // SendThanksMail::dispatch();
-
         $categories = PrimaryCategory::with('secondary')
         ->get();
 
