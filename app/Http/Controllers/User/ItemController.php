@@ -10,7 +10,6 @@ use App\Models\Stock;
 use App\Models\PrimaryCategory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\TestMail;
 use App\Jobs\SendThanksMail;
 
 class ItemController extends Controller
