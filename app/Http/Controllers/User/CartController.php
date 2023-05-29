@@ -24,8 +24,6 @@ class CartController extends Controller
             $totalPrice += $product->price * $product->pivot->quantity;
         }
 
-        // dd($products, $totalPrice);
-
         return view('user.cart',
         compact('products', 'totalPrice'));
     }
@@ -85,7 +83,7 @@ class CartController extends Controller
                 array_push($lineItems, $lineItem);
             }
         }
-        // dd($lineItems);
+
         foreach ($products as $product) {
             Stock::create([
                 'product_id' => $product->id,
@@ -93,8 +91,6 @@ class CartController extends Controller
                 'quantity' => $product->pivot->quantity * -1
             ]);
         }
-
-        // dd('test');
 
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 
@@ -114,7 +110,6 @@ class CartController extends Controller
 
     public function success()
     {
-        ////
         $items = Cart::where('user_id', Auth::id())->get();
         $products = CartService::getItemsInCart($items);
         $user = User::findOrFail(Auth::id());
@@ -123,8 +118,6 @@ class CartController extends Controller
         foreach($products as $product) {
             SendOrderedMail::dispatch($product, $user);
         }
-        // dd('ユーザーメール送信テスト');
-        ////
 
         Cart::where('user_id', Auth::id())->delete();
 

@@ -16,7 +16,6 @@ use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth:owners');
@@ -36,7 +35,6 @@ class ProductController extends Controller
 
     public function index()
     {
-        // $products = Owner::findOrFail(Auth::id())->shop->product;
         $ownerInfo = Owner::with('shop.product.imageFirst')
         ->where('id', Auth::id())->get();
 
