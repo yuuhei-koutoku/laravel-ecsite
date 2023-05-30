@@ -20,11 +20,18 @@ Route::get('/', function () {
     return view('user.welcome');
 });
 
-Route::middleware('auth:users')->group(function(){
+Route::middleware('auth:users')->group(function () {
+    // 商品関連
     Route::get('/', [ItemController::class, 'index'])->name('items.index');
     Route::get('show/{item}', [ItemController::class, 'show'])->name('items.show');
+
+    // プロフィール関連
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// カート関連
 Route::prefix('cart')->
     middleware('auth:users')->group(function(){
         Route::get('/', [CartController::class, 'index'])->name('cart.index');
@@ -38,11 +45,5 @@ Route::prefix('cart')->
 // Route::get('/dashboard', function () {
 //     return view('user.dashboard');
 // })->middleware(['auth:users', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
 require __DIR__.'/auth.php';
