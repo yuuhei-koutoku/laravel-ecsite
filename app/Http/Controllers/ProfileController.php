@@ -8,16 +8,32 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:users');
+    }
+
     /**
      * Display the user's profile form.
      */
     public function edit(Request $request): View
     {
+        $stocks = DB::table('t_stocks')
+        ->join('products', 't_stocks.product_id', '=', 'products.id')
+        ->join('images', 'products.image1', '=', 'images.id')
+        ->select('images.filename', 'products.name', 'products.price', 't_stocks.quantity', 't_stocks.created_at')
+        ->where('t_stocks.user_id', Auth::id())
+        ->where('t_stocks.type', 3)
+        ->orderBy('t_stocks.created_at', 'desc')
+        ->get();
+
         return view('profile.edit', [
             'user' => $request->user(),
+            'stocks' => $stocks,
         ]);
     }
 
@@ -34,7 +50,7 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('user.profile.edit')->with('status', 'profile-updated');
     }
 
     /**
