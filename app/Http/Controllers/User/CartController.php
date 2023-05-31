@@ -87,6 +87,7 @@ class CartController extends Controller
         foreach ($products as $product) {
             Stock::create([
                 'product_id' => $product->id,
+                'user_id' => $user->id,
                 'type' => \Constant::PRODUCT_LIST['reduce'],
                 'quantity' => $product->pivot->quantity * -1
             ]);
@@ -119,6 +120,15 @@ class CartController extends Controller
             SendOrderedMail::dispatch($product, $user);
         }
 
+        foreach ($user->products as $product) {
+            Stock::create([
+                'product_id' => $product->id,
+                'user_id' => $user->id,
+                'type' => \Constant::PRODUCT_LIST['decision'],
+                'quantity' => $product->pivot->quantity
+            ]);
+        }
+
         Cart::where('user_id', Auth::id())->delete();
 
         return to_route('user.items.index');
@@ -131,6 +141,7 @@ class CartController extends Controller
         foreach ($user->products as $product) {
             Stock::create([
                 'product_id' => $product->id,
+                'user_id' => $user->id,
                 'type' => \Constant::PRODUCT_LIST['add'],
                 'quantity' => $product->pivot->quantity
             ]);

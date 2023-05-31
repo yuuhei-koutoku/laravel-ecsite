@@ -49,6 +49,7 @@ class ItemController extends Controller
     {
         $product = Product::findOrFail($id);
         $quantity = Stock::where('product_id', $product->id)
+        ->whereNot('type', 3)
         ->sum('quantity');
 
         if ($quantity > 9) {
