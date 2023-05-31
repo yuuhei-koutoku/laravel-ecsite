@@ -18,11 +18,13 @@ class StockSeeder extends Seeder
         DB::table('t_stocks')->insert([
             [
                 'product_id' => 1,
+                'user_id' => 1,
                 'type' => 1,
                 'quantity' => 5,
             ],
             [
                 'product_id' => 1,
+                'user_id' => 1,
                 'type' => 1,
                 'quantity' => -2,
             ],
