@@ -24,6 +24,10 @@
                 </div>
                 <div class="flex">
                     <div>
+                        <span class="text-sm">CSVダウンロード</span><br>
+                        <button name="download" value="download" class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded mr-4">ダウンロードする</button>
+                    </div>
+                    <div>
                         <span class="text-sm">表示順</span><br>
                         <select id="sort" name="sort" class="mr-4">
                             <option value="{{ \Constant::SORT_ORDER['recommend']}}"

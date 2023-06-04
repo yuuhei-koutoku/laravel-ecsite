@@ -42,7 +42,9 @@ class ItemController extends Controller
         ->sortOrder($request->sort)
         ->paginate($request->pagination ?? '20');
 
-        ItemService::csvDownload($products);
+        if (!is_null($request->download)) {
+            ItemService::csvDownload($products);
+        }
 
         return view('user.index',
         compact('products', 'categories'));
