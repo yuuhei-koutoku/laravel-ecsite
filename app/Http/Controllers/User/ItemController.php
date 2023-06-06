@@ -11,6 +11,7 @@ use App\Models\PrimaryCategory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Jobs\SendThanksMail;
+use App\Services\ItemService;
 
 class ItemController extends Controller
 {
@@ -41,8 +42,14 @@ class ItemController extends Controller
         ->sortOrder($request->sort)
         ->paginate($request->pagination ?? '20');
 
+        $keyword = $request->keyword;
+
+        if (!is_null($request->download)) {
+            ItemService::csvDownload($products);
+        }
+
         return view('user.index',
-        compact('products', 'categories'));
+        compact('products', 'categories', 'keyword'));
     }
 
     public function show($id)
