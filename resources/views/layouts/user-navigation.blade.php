@@ -20,6 +20,9 @@
                     <x-nav-link :href="route('user.cart.index')" :active="request()->routeIs('user.cart.index')">
                         カートを表示
                     </x-nav-link>
+                    <x-nav-link :href="route('user.inquiry.index')" :active="request()->routeIs('user.inquiry.index')">
+                        お問い合わせ
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -77,6 +80,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('user.cart.index')" :active="request()->routeIs('user.cart.index')">
                 カートを表示
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('user.inquiry.index')" :active="request()->routeIs('user.inquiry.index')">
+                お問い合わせ
             </x-responsive-nav-link>
         </div>
 
