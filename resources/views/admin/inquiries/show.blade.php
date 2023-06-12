@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            お問い合わせ
+            お問い合わせ詳細（ユーザーID：{{ $inquiries->first()->user->id }}、ユーザー名：{{ $inquiries->first()->user->name }}）
         </h2>
     </x-slot>
     <div class="py-12">
@@ -11,13 +11,13 @@
                     <div class="-m-2">
                         <div class="p-2 w-3/4 mx-auto">
                             @foreach($inquiries as $inquiry)
-                                @if ($inquiry->admin === 0)
+                                @if ($inquiry->admin === 1)
                                     @if ($inquiry->deleted_at === null)
                                         <div class="text-white bg-indigo-500 rounded-lg text-sm break-words px-2 py-1 mb-1 ml-20 lg:ml-40">
                                             {{ $inquiry->message }}
                                         </div>
                                         <div class="flex flex-row-reverse">
-                                            <form method="post" action="{{ route('user.inquiry.softDestroy', ['id' => $inquiry->id]) }}" id="delete_{{ $inquiry->id }}">
+                                            <form method="post" action="{{ route('admin.inquiries.softDestroy', ['id' => $inquiry->id]) }}" id="delete_{{ $inquiry->id }}">
                                                 @csrf
                                                 @method('POST')
                                                     <a href="#" data-id="{{ $inquiry->id }}" onclick="deletePost(this)" class="text-white bg-pink-500 text-xs rounded-lg px-2 py-1 mb-8 hover:bg-pink-600">送信取消</a>
@@ -46,12 +46,12 @@
                             @endforeach
                         </div>
                     </div>
-                    <form method="post" action="{{ route('user.inquiry.store') }}">
+                    <form method="post" action="{{ route('admin.inquiries.store', ['user_id' => $inquiries->first()->user->id]) }}">
                         @csrf
                         <div class="-m-2">
                             <div class="p-2 w-3/4 mx-auto">
                                 <div class="relative">
-                                    <textarea name="message" rows="3" placeholder="運営への問い合わせ内容をを入力   例:「配達が完了しました」となっているが、商品が届いていない" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"></textarea>
+                                    <textarea name="message" rows="3" placeholder="お問い合わせの返答を入力   例:お問い合わせありがとうございます。早急に対応いたします。" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"></textarea>
                                     <button class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">送信</button>
                                     <x-input-error :messages="$errors->get('message')" class="mt-2" />
                                 </div>
