@@ -43,7 +43,7 @@ Route::prefix('cart')->
         Route::get('cancel', [CartController::class, 'cancel'])->name('cart.cancel');
 });
 
-// カート関連
+// お問い合わせ関連
 Route::prefix('inquiry')->
     middleware('auth:users')->group(function(){
         Route::get('/', [InquiryController::class, 'index'])->name('inquiry.index');
