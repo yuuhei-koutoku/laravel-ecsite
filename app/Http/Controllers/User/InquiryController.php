@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Inquiry;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\InquirySendRequest;
 
 class InquiryController extends Controller
 {
@@ -23,7 +24,7 @@ class InquiryController extends Controller
         return view('user.inquiry', compact('inquiries'));
     }
 
-    public function store(Request $request)
+    public function store(InquirySendRequest $request)
     {
         Inquiry::create([
             'user_id' => Auth::id(),

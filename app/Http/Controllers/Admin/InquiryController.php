@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Inquiry;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\InquirySendRequest;
 
 class InquiryController extends Controller
 {
@@ -42,7 +43,7 @@ class InquiryController extends Controller
         return view('admin.inquiries.show', compact('inquiries'));
     }
 
-    public function store(Request $request)
+    public function store(InquirySendRequest $request)
     {
         $user_id = $request->user_id;
 
