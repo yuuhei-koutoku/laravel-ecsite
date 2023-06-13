@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\OwnersController;
+use App\Http\Controllers\Admin\InquiryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,14 @@ Route::prefix('expired-owners')->
     middleware('auth:admin')->group(function(){
         Route::get('index', [OwnersController::class, 'expiredOwnerIndex'])->name('expired-owners.index');
         Route::post('destroy/{owner}', [OwnersController::class, 'expiredOwnerDestroy'])->name('expired-owners.destroy');
+});
+
+Route::prefix('inquiries')->
+    middleware('auth:admin')->group(function(){
+        Route::get('index', [InquiryController::class, 'index'])->name('inquiries.index');
+        Route::get('show/{user_id}', [InquiryController::class, 'show'])->name('inquiries.show');
+        Route::post('show/{user_id}', [InquiryController::class, 'store'])->name('inquiries.store');
+        Route::post('{id}/destroy', [InquiryController::class, 'softDestroy'])->name('inquiries.softDestroy');
 });
 
 Route::get('/dashboard', function () {
