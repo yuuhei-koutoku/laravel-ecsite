@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Inquiry;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\InquirySendRequest;
 
 class InquiryController extends Controller
 {
@@ -42,7 +43,7 @@ class InquiryController extends Controller
         return view('admin.inquiries.show', compact('inquiries'));
     }
 
-    public function store(Request $request)
+    public function store(InquirySendRequest $request)
     {
         $user_id = $request->user_id;
 
@@ -52,7 +53,9 @@ class InquiryController extends Controller
             'message' => $request->message,
         ]);
 
-        return to_route('admin.inquiries.show', compact('user_id'));
+        return to_route('admin.inquiries.show', compact('user_id'))
+        ->with(['message' => 'メッセージを送信しました。',
+        'status' => 'info']);
     }
 
     public function softDestroy($id)
@@ -61,6 +64,8 @@ class InquiryController extends Controller
         $user_id = $inquiry->user_id;
         $inquiry->delete();
 
-        return to_route('admin.inquiries.show', compact('user_id'));
+        return to_route('admin.inquiries.show', compact('user_id'))
+        ->with(['message' => 'メッセージの送信を取り消しました。',
+        'status' => 'alert']);
     }
 }

@@ -159,6 +159,7 @@ return [
         'password' => 'パスワード',
         'quantity' => '数量',
         'current_password' => '現在のパスワード',
+        'message' => 'メッセージ',
     ],
 
 ];
