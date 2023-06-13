@@ -31,13 +31,17 @@ class InquiryController extends Controller
             'message' => $request->message,
         ]);
 
-        return to_route('user.inquiry.index');
+        return to_route('user.inquiry.index')
+        ->with(['message' => 'メッセージを送信しました。',
+        'status' => 'info']);
     }
 
     public function softDestroy($id)
     {
         Inquiry::findOrFail($id)->delete();
 
-        return to_route('user.inquiry.index');
+        return to_route('user.inquiry.index')
+        ->with(['message' => 'メッセージの送信を取り消しました。',
+        'status' => 'alert']);
     }
 }

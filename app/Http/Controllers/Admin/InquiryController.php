@@ -52,7 +52,9 @@ class InquiryController extends Controller
             'message' => $request->message,
         ]);
 
-        return to_route('admin.inquiries.show', compact('user_id'));
+        return to_route('admin.inquiries.show', compact('user_id'))
+        ->with(['message' => 'メッセージを送信しました。',
+        'status' => 'info']);
     }
 
     public function softDestroy($id)
@@ -61,6 +63,8 @@ class InquiryController extends Controller
         $user_id = $inquiry->user_id;
         $inquiry->delete();
 
-        return to_route('admin.inquiries.show', compact('user_id'));
+        return to_route('admin.inquiries.show', compact('user_id'))
+        ->with(['message' => 'メッセージの送信を取り消しました。',
+        'status' => 'alert']);
     }
 }

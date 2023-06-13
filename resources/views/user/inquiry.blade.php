@@ -9,6 +9,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="-m-2">
+                        <x-flash-message status="session('status')" />
                         <div class="p-2 w-3/4 mx-auto">
                             @foreach($inquiries as $inquiry)
                                 @if ($inquiry->admin === 0)
