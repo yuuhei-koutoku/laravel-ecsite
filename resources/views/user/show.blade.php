@@ -69,16 +69,16 @@
                                 <form method="post" action="{{ route('user.cart.add') }}">
                                     @csrf
                                     <div class="flex items-center">
-                                        <span class="mr-3">数量</span>
+                                        <span class="mr-2">数量</span>
                                         <div class="relative">
-                                            <select name="quantity" class="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10">
+                                            <select name="quantity" class="rounded border appearance-none border-gray-300 py-2 mr-4 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10">
                                                 @for ($i = 1; $i <= $quantity; $i++)
                                                     <option value="{{ $i }}">{{ $i }}</option>
                                                 @endfor
                                             </select>
                                         </div>
+                                        <button class="flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">カートに入れる</button>
                                     </div>
-                                    <button class="flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">カートに入れる</button>
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                 </form>
                             </div>
