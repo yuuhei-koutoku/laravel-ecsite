@@ -46,9 +46,9 @@ Route::prefix('inquiries')->
         Route::post('{id}/destroy', [InquiryController::class, 'softDestroy'])->name('inquiries.softDestroy');
 });
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth:admin', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('admin.dashboard');
+// })->middleware(['auth:admin', 'verified'])->name('dashboard');
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
