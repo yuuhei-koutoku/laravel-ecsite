@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
@@ -11,8 +9,9 @@ use App\Http\Controllers\Admin\Auth\PasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
-use App\Http\Controllers\Admin\OwnersController;
 use App\Http\Controllers\Admin\InquiryController;
+use App\Http\Controllers\Admin\OwnersController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,13 +32,13 @@ Route::resource('owners', OwnersController::class)
 ->middleware('auth:admin')->except(['show']);
 
 Route::prefix('expired-owners')->
-    middleware('auth:admin')->group(function(){
+    middleware('auth:admin')->group(function () {
         Route::get('index', [OwnersController::class, 'expiredOwnerIndex'])->name('expired-owners.index');
         Route::post('destroy/{owner}', [OwnersController::class, 'expiredOwnerDestroy'])->name('expired-owners.destroy');
 });
 
 Route::prefix('inquiries')->
-    middleware('auth:admin')->group(function(){
+    middleware('auth:admin')->group(function () {
         Route::get('index', [InquiryController::class, 'index'])->name('inquiries.index');
         Route::get('show/{user_id}', [InquiryController::class, 'show'])->name('inquiries.show');
         Route::post('show/{user_id}', [InquiryController::class, 'store'])->name('inquiries.store');

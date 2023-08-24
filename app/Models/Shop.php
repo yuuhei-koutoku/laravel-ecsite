@@ -4,8 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Owner;
-use App\Models\Product;
 
 class Shop extends Model
 {
@@ -16,7 +14,7 @@ class Shop extends Model
         'name',
         'information',
         'filename',
-        'is_selling'
+        'is_selling',
     ];
 
     public function owner()

@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\Product;
 use App\Models\Cart;
+use App\Models\Product;
 
 class CartService
 {
@@ -11,8 +11,7 @@ class CartService
     {
         $products = [];
 
-        foreach ($items as $item)
-        {
+        foreach ($items as $item) {
             $p = Product::findOrFail($item->product_id);
             $owner = $p->shop->owner->select('name', 'email')->first()->toArray(); // オーナー情報
             $values = array_values($owner); // 連想配列の値を取得
