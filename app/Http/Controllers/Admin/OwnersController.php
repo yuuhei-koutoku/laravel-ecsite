@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Owner;
+use App\Models\Shop; // Eloquent エロクアント
 use Illuminate\Http\Request;
-use App\Models\Owner; // Eloquent エロクアント
-use App\Models\Shop;
 use Illuminate\Support\Facades\DB; // QueryBuilder クエリビルダ
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rules;
 use Throwable;
-use Illuminate\Support\Facades\Log;
 
 class OwnersController extends Controller
 {
@@ -41,7 +40,6 @@ class OwnersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -52,8 +50,8 @@ class OwnersController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        try{
-            DB::transaction(function() use($request) {
+        try {
+            DB::transaction(function () use ($request) {
                 $owner = Owner::create([
                     'name' => $request->name,
                     'email' => $request->email,
@@ -65,7 +63,7 @@ class OwnersController extends Controller
                     'name' => '店名を入力してください',
                     'information' => '',
                     'filename' => '',
-                    'is_selling' => true
+                    'is_selling' => true,
                 ]);
             }, 2);
         } catch (Throwable $e) {
@@ -75,7 +73,7 @@ class OwnersController extends Controller
 
         return to_route('admin.owners.index')
         ->with(['message' => 'オーナー登録を実施しました。',
-        'status' => 'info']);
+            'status' => 'info']);
     }
 
     /**
@@ -105,7 +103,6 @@ class OwnersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -123,7 +120,7 @@ class OwnersController extends Controller
 
         return to_route('admin.owners.index')
         ->with(['message' => 'オーナー情報を更新しました。',
-        'status' => 'info']);
+            'status' => 'info']);
     }
 
     /**
@@ -138,16 +135,18 @@ class OwnersController extends Controller
 
         return to_route('admin.owners.index')
         ->with(['message' => 'オーナー情報を削除しました。',
-        'status' => 'alert']);
+            'status' => 'alert']);
     }
 
-    public function expiredOwnerIndex() {
+    public function expiredOwnerIndex()
+    {
         $expiredOwners = Owner::onlyTrashed()->get();
 
         return view('admin.expired-owners', compact('expiredOwners'));
     }
 
-    public function expiredOwnerDestroy($id) {
+    public function expiredOwnerDestroy($id)
+    {
         Owner::onlyTrashed()->findOrFail($id)->forceDelete();
 
         return to_route('admin.expired-owners.index');

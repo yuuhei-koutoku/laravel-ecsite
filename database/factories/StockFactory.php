@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Stock>
@@ -19,9 +19,9 @@ class StockFactory extends Factory
     {
         return [
             'product_id' => Product::factory(),
-            'user_id' => $this->faker->numberBetween(1,3),
-            'type' => $this->faker->numberBetween(1,2),
-            'quantity' => $this->faker->numberBetween(10,999),
+            'user_id' => $this->faker->numberBetween(1, 3),
+            'type' => $this->faker->numberBetween(1, 2),
+            'quantity' => $this->faker->numberBetween(10, 999),
         ];
     }
 }

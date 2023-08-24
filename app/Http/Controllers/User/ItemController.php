@@ -3,15 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Jobs\SendThanksMail as JobsSendThanksMail;
-use Illuminate\Http\Request;
+use App\Models\PrimaryCategory;
 use App\Models\Product;
 use App\Models\Stock;
-use App\Models\PrimaryCategory;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
-use App\Jobs\SendThanksMail;
 use App\Services\ItemService;
+use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
@@ -21,12 +17,13 @@ class ItemController extends Controller
 
         $this->middleware(function ($request, $next) {
             $id = $request->route()->parameter('item');
-            if (!is_null($id)) {
+            if (! is_null($id)) {
                 $itemId = Product::availableItems()->where('products.id', $id)->exists();
-                if (!$itemId) {
+                if (! $itemId) {
                     abort(404);
                 }
             }
+
             return $next($request);
         });
     }
@@ -44,7 +41,7 @@ class ItemController extends Controller
 
         $keyword = $request->keyword;
 
-        if (!is_null($request->download)) {
+        if (! is_null($request->download)) {
             ItemService::csvDownload($products);
         }
 

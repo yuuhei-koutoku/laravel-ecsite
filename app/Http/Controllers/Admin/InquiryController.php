@@ -3,11 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Inquiry;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\InquirySendRequest;
+use App\Models\Inquiry;
 
 class InquiryController extends Controller
 {
@@ -55,7 +52,7 @@ class InquiryController extends Controller
 
         return to_route('admin.inquiries.show', compact('user_id'))
         ->with(['message' => 'メッセージを送信しました。',
-        'status' => 'info']);
+            'status' => 'info']);
     }
 
     public function softDestroy($id)
@@ -66,6 +63,6 @@ class InquiryController extends Controller
 
         return to_route('admin.inquiries.show', compact('user_id'))
         ->with(['message' => 'メッセージの送信を取り消しました。',
-        'status' => 'alert']);
+            'status' => 'alert']);
     }
 }
