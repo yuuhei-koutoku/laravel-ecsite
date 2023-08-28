@@ -29,7 +29,17 @@
                 <div class="flex">
                     <div>
                         <span class="text-sm">CSVダウンロード</span><br>
-                        <button name="download" value="download" class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded mr-4">ダウンロードする</button>
+                        <select id="download" name="download" class="mr-4">
+                            <option disabled selected>
+                                選択してください
+                            </option>
+                            <option value="all_pages">
+                                全てのページ
+                            </option>
+                            <option value="current_page">
+                                現在のページのみ
+                            </option>
+                        </select>
                     </div>
                     <div>
                         <span class="text-sm">表示順</span><br>
@@ -116,14 +126,22 @@
     </div>
 
     <script>
+        const download = document.getElementById('download')
+        download.addEventListener('change', function(){
+            this.form.submit();
+            console.log(this.selectedIndex);
+            this.selectedIndex = 0;
+            console.log(this.selectedIndex);
+        })
+
         const select = document.getElementById('sort')
         select.addEventListener('change', function(){
-            this.form.submit()
+            this.form.submit();
         })
 
         const paginate = document.getElementById('pagination')
         paginate.addEventListener('change', function(){
-            this.form.submit()
+            this.form.submit();
         })
     </script>
 </x-app-layout>
