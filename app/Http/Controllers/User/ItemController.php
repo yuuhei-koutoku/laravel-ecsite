@@ -42,7 +42,7 @@ class ItemController extends Controller
         $keyword = $request->keyword;
 
         if (! is_null($request->download)) {
-            ItemService::csvDownload($products);
+            return ItemService::csvDownload($products);
         }
 
         return view('user.index',
