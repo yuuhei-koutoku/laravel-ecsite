@@ -36,14 +36,15 @@ class ItemController extends Controller
         $products = Product::availableItems()
         ->selectCategory($request->category ?? '0')
         ->searchKeyword($request->keyword)
-        ->sortOrder($request->sort)
-        ->paginate($request->pagination ?? '20');
+        ->sortOrder($request->sort);
+
+        if ($request->download === 'all_pages') return ItemService::csvDownload($products->get(), 'all_pages');
+
+        $products = $products->paginate($request->pagination ?? '20');
+
+        if ($request->download === 'current_page') return ItemService::csvDownload($products, 'current_page');
 
         $keyword = $request->keyword;
-
-        if (! is_null($request->download)) {
-            return ItemService::csvDownload($products);
-        }
 
         return view('user.index',
         compact('products', 'categories', 'keyword'));

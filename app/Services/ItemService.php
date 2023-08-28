@@ -6,10 +6,19 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ItemService
 {
-    public static function csvDownload($products)
+    public static function csvDownload($products, $type)
     {
         $csvHeader = ['商品ID', '商品名', 'カテゴリー', '価格', '詳細'];
-        $csvData = $products->toArray()['data'];
+
+        if ($type === 'all_pages') {
+            $csvData = $products->toArray();
+            $filename = 'all_products_' . date('Y-m-d_H-i-s', strtotime('now')) . '.csv';
+        }
+
+        if ($type === 'current_page') {
+            $csvData = $products->toArray()['data'];
+            $filename = 'current_page_products_' . date('Y-m-d_H-i-s', strtotime('now')) . '.csv';
+        }
 
         $response = new StreamedResponse(function () use ($csvHeader, $csvData) {
             $handle = fopen('php://output', 'w');
@@ -22,7 +31,7 @@ class ItemService
             fclose($handle);
         }, 200, [
             'Content-Type' => 'text/csv',
-            'Content-Disposition' => "attachment; filename = products_" . date('Y-m-d_H-i-s', strtotime('now')) . ".csv",
+            'Content-Disposition' => 'attachment; filename = ' . $filename,
         ]);
 
         return $response;
