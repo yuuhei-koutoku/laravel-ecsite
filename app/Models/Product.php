@@ -82,7 +82,7 @@ class Product extends Model
         ->join('images as image1', 'products.image1', '=', 'image1.id')
         ->where('shops.is_selling', true)
         ->where('products.is_selling', true)
-        ->select('products.id as id', 'products.name as name', 'products.price', 'products.sort_order as sort_order', 'products.information', 'secondary_categories.name as category', 'image1.filename as filename');
+        ->select('products.id as id', 'products.name as name', 'products.price', 'secondary_categories.name as category', 'products.sort_order as sort_order', 'products.information', 'image1.filename as filename');
     }
 
     public function scopeSortOrder($query, $sortOrder)

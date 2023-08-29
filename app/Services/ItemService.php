@@ -8,7 +8,7 @@ class ItemService
 {
     public static function csvDownload($products, $type)
     {
-        $csvHeader = ['商品ID', '商品名', 'カテゴリー', '価格', '詳細'];
+        $csvHeader = ['商品ID', '商品名', '値段', 'カテゴリー', '詳細'];
 
         if ($type === 'all_pages') {
             $csvData = $products->toArray();
@@ -25,6 +25,7 @@ class ItemService
             fputcsv($handle, $csvHeader);
 
             foreach ($csvData as $row) {
+                unset($row['sort_order'], $row['filename']);
                 fputcsv($handle, $row);
             }
 
