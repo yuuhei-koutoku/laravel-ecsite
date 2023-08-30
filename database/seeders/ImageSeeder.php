@@ -17,33 +17,68 @@ class ImageSeeder extends Seeder
         DB::table('images')->insert([
             [
                 'owner_id' => 1,
+                'filename' => 'no_image.jpg',
+                'title' => '画像なし',
+            ],
+            [
+                'owner_id' => 1,
                 'filename' => 'sample1.jpg',
-                'title' => null,
+                'title' => 'たまねぎ',
             ],
             [
                 'owner_id' => 1,
                 'filename' => 'sample2.jpg',
-                'title' => null,
+                'title' => 'にんじん',
             ],
             [
                 'owner_id' => 1,
                 'filename' => 'sample3.jpg',
-                'title' => null,
+                'title' => 'ピーマン',
             ],
             [
                 'owner_id' => 1,
                 'filename' => 'sample4.jpg',
-                'title' => null,
+                'title' => 'なす',
             ],
             [
                 'owner_id' => 1,
                 'filename' => 'sample5.jpg',
-                'title' => null,
+                'title' => 'みかん',
             ],
             [
                 'owner_id' => 1,
                 'filename' => 'sample6.jpg',
-                'title' => null,
+                'title' => 'りんご',
+            ],
+            [
+                'owner_id' => 1,
+                'filename' => 'sample7.jpg',
+                'title' => 'ぶどう',
+            ],
+            [
+                'owner_id' => 1,
+                'filename' => 'sample8.jpg',
+                'title' => 'いちご',
+            ],
+            [
+                'owner_id' => 1,
+                'filename' => 'sample9.jpg',
+                'title' => 'コーラ',
+            ],
+            [
+                'owner_id' => 1,
+                'filename' => 'sample10.jpg',
+                'title' => 'チョコレートスムージー',
+            ],
+            [
+                'owner_id' => 1,
+                'filename' => 'sample11.jpg',
+                'title' => '紅茶',
+            ],
+            [
+                'owner_id' => 1,
+                'filename' => 'sample12.jpg',
+                'title' => 'ミネラルウォーター',
             ],
         ]);
     }
