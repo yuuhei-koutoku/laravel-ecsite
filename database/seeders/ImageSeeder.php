@@ -17,33 +17,68 @@ class ImageSeeder extends Seeder
         DB::table('images')->insert([
             [
                 'owner_id' => 1,
-                'filename' => 'sample1.jpg',
-                'title' => null,
+                'filename' => 'no_image.jpg',
+                'title' => '画像なし',
             ],
             [
                 'owner_id' => 1,
-                'filename' => 'sample2.jpg',
-                'title' => null,
+                'filename' => 'product1.jpg',
+                'title' => 'たまねぎ',
             ],
             [
                 'owner_id' => 1,
-                'filename' => 'sample3.jpg',
-                'title' => null,
+                'filename' => 'product2.jpg',
+                'title' => 'にんじん',
             ],
             [
                 'owner_id' => 1,
-                'filename' => 'sample4.jpg',
-                'title' => null,
+                'filename' => 'product3.jpg',
+                'title' => 'ピーマン',
             ],
             [
                 'owner_id' => 1,
-                'filename' => 'sample5.jpg',
-                'title' => null,
+                'filename' => 'product4.jpg',
+                'title' => 'なす',
             ],
             [
                 'owner_id' => 1,
-                'filename' => 'sample6.jpg',
-                'title' => null,
+                'filename' => 'product5.jpg',
+                'title' => 'みかん',
+            ],
+            [
+                'owner_id' => 1,
+                'filename' => 'product6.jpg',
+                'title' => 'りんご',
+            ],
+            [
+                'owner_id' => 1,
+                'filename' => 'product7.jpg',
+                'title' => 'ぶどう',
+            ],
+            [
+                'owner_id' => 1,
+                'filename' => 'product8.jpg',
+                'title' => 'いちご',
+            ],
+            [
+                'owner_id' => 1,
+                'filename' => 'product9.jpg',
+                'title' => 'コーラ',
+            ],
+            [
+                'owner_id' => 1,
+                'filename' => 'product10.jpg',
+                'title' => 'チョコレートスムージー',
+            ],
+            [
+                'owner_id' => 1,
+                'filename' => 'product11.jpg',
+                'title' => '紅茶',
+            ],
+            [
+                'owner_id' => 1,
+                'filename' => 'product12.jpg',
+                'title' => 'ミネラルウォーター',
             ],
         ]);
     }

@@ -36,22 +36,30 @@ class Product extends Model
 
     public function imageFirst()
     {
-        return $this->belongsTo(Image::class, 'image1', 'id');
+        return $this->belongsTo(Image::class, 'image1', 'id')->withDefault([
+            'filename' => 'no_image.jpg',
+        ]);
     }
 
     public function imageSecond()
     {
-        return $this->belongsTo(Image::class, 'image2', 'id');
+        return $this->belongsTo(Image::class, 'image2', 'id')->withDefault([
+            'filename' => 'no_image.jpg',
+        ]);
     }
 
     public function imageThird()
     {
-        return $this->belongsTo(Image::class, 'image3', 'id');
+        return $this->belongsTo(Image::class, 'image3', 'id')->withDefault([
+            'filename' => 'no_image.jpg',
+        ]);
     }
 
     public function imageFourth()
     {
-        return $this->belongsTo(Image::class, 'image4', 'id');
+        return $this->belongsTo(Image::class, 'image4', 'id')->withDefault([
+            'filename' => 'no_image.jpg',
+        ]);
     }
 
     public function stock()
@@ -79,7 +87,7 @@ class Product extends Model
         })
         ->join('shops', 'products.shop_id', '=', 'shops.id')
         ->join('secondary_categories', 'products.secondary_category_id', '=', 'secondary_categories.id')
-        ->join('images as image1', 'products.image1', '=', 'image1.id')
+        ->leftJoin('images as image1', 'products.image1', '=', 'image1.id')
         ->where('shops.is_selling', true)
         ->where('products.is_selling', true)
         ->select('products.id as id', 'products.name as name', 'products.price', 'secondary_categories.name as category', 'products.sort_order as sort_order', 'products.information', 'image1.filename as filename');
