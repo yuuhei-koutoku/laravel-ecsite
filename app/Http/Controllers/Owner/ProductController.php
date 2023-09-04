@@ -91,7 +91,7 @@ class ProductController extends Controller
 
                 Stock::create([
                     'product_id' => $product->id,
-                    'user_id' => NULL,
+                    'user_id' => null,
                     'type' => 1,
                     'quantity' => $request->quantity,
                 ]);
