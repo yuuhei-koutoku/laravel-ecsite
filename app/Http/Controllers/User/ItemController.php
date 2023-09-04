@@ -38,11 +38,15 @@ class ItemController extends Controller
         ->searchKeyword($request->keyword)
         ->sortOrder($request->sort);
 
-        if ($request->download === 'all_pages') return ItemService::csvDownload($products->get(), 'all_pages');
+        if ($request->download === 'all_pages') {
+        return ItemService::csvDownload($products->get(), 'all_pages');
+        }
 
         $products = $products->paginate($request->pagination ?? '20');
 
-        if ($request->download === 'current_page') return ItemService::csvDownload($products, 'current_page');
+        if ($request->download === 'current_page') {
+        return ItemService::csvDownload($products, 'current_page');
+        }
 
         $keyword = $request->keyword;
 

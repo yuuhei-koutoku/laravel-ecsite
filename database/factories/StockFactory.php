@@ -19,7 +19,7 @@ class StockFactory extends Factory
     {
         return [
             'product_id' => Product::factory(),
-            'user_id' => NULL,
+            'user_id' => null,
             'type' => 1,
             'quantity' => $this->faker->numberBetween(10, 999),
         ];

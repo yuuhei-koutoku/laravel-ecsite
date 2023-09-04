@@ -12,12 +12,12 @@ class ItemService
 
         if ($type === 'all_pages') {
             $csvData = $products->toArray();
-            $filename = 'all_products_' . date('Y-m-d_H-i-s', strtotime('now')) . '.csv';
+            $filename = 'all_products_'.date('Y-m-d_H-i-s', strtotime('now')).'.csv';
         }
 
         if ($type === 'current_page') {
             $csvData = $products->toArray()['data'];
-            $filename = 'current_page_products_' . date('Y-m-d_H-i-s', strtotime('now')) . '.csv';
+            $filename = 'current_page_products_'.date('Y-m-d_H-i-s', strtotime('now')).'.csv';
         }
 
         $response = new StreamedResponse(function () use ($csvHeader, $csvData) {
@@ -32,7 +32,7 @@ class ItemService
             fclose($handle);
         }, 200, [
             'Content-Type' => 'text/csv',
-            'Content-Disposition' => 'attachment; filename = ' . $filename,
+            'Content-Disposition' => 'attachment; filename = '.$filename,
         ]);
 
         return $response;
