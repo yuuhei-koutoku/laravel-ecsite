@@ -3,16 +3,15 @@
 namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use App\Http\Requests\ProductRequest;
 use App\Models\Image;
+use App\Models\Owner;
+use App\Models\PrimaryCategory;
 use App\Models\Product;
 use App\Models\Shop;
 use App\Models\Stock;
-use App\Models\PrimaryCategory;
-use App\Models\Owner;
-use App\Http\Requests\ProductRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -22,13 +21,14 @@ class ProductController extends Controller
 
         $this->middleware(function ($request, $next) {
             $id = $request->route()->parameter('product');
-            if (!is_null($id)) {
+            if (! is_null($id)) {
                 $productsOwnerId = Product::findOrFail($id)->shop->owner->id;
-                $productId = (int)$productsOwnerId;
+                $productId = (int) $productsOwnerId;
                 if ($productId !== Auth::id()) {
                     abort(404);
                 }
             }
+
             return $next($request);
         });
     }
@@ -73,8 +73,8 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        try{
-            DB::transaction(function() use($request) {
+        try {
+            DB::transaction(function () use ($request) {
                 $product = Product::create([
                     'name' => $request->name,
                     'information' => $request->information,
@@ -91,6 +91,7 @@ class ProductController extends Controller
 
                 Stock::create([
                     'product_id' => $product->id,
+                    'user_id' => null,
                     'type' => 1,
                     'quantity' => $request->quantity,
                 ]);
@@ -102,7 +103,7 @@ class ProductController extends Controller
 
         return to_route('owner.products.index')
         ->with(['message' => '商品登録を実施しました。',
-        'status' => 'info']);
+            'status' => 'info']);
     }
 
     public function edit($id)
@@ -139,12 +140,13 @@ class ProductController extends Controller
 
         if ($request->current_quantity !== $quantity) {
             $id = $request->route()->parameter('product');
+
             return to_route('owner.products.edit', ['product' => $id])
             ->with(['message' => '在庫数が変更されています。再度確認してください。',
-            'status' => 'alert']);
+                'status' => 'alert']);
         } else {
-            try{
-                DB::transaction(function() use($request, $product) {
+            try {
+                DB::transaction(function () use ($request, $product) {
                     $product->name = $request->name;
                     $product->information = $request->information;
                     $product->price = $request->price;
@@ -177,7 +179,7 @@ class ProductController extends Controller
 
             return to_route('owner.products.index')
             ->with(['message' => '商品情報を更新しました。',
-            'status' => 'info']);
+                'status' => 'info']);
         }
     }
 
@@ -193,6 +195,6 @@ class ProductController extends Controller
 
         return to_route('owner.products.index')
         ->with(['message' => '商品を削除しました。',
-        'status' => 'alert']);
+            'status' => 'alert']);
     }
 }

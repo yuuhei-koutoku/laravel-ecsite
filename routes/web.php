@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\User\ItemController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\InquiryController;
+use App\Http\Controllers\User\ItemController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +34,7 @@ Route::middleware('auth:users')->group(function () {
 
 // カート関連
 Route::prefix('cart')->
-    middleware('auth:users')->group(function(){
+    middleware('auth:users')->group(function () {
         Route::get('/', [CartController::class, 'index'])->name('cart.index');
         Route::post('add', [CartController::class, 'add'])->name('cart.add');
         Route::post('delete/{item}', [CartController::class, 'delete'])->name('cart.delete');
@@ -45,7 +45,7 @@ Route::prefix('cart')->
 
 // お問い合わせ関連
 Route::prefix('inquiry')->
-    middleware('auth:users')->group(function(){
+    middleware('auth:users')->group(function () {
         Route::get('/', [InquiryController::class, 'index'])->name('inquiry.index');
         Route::post('/', [InquiryController::class, 'store'])->name('inquiry.store');
         Route::post('{id}/destroy', [InquiryController::class, 'softDestroy'])->name('inquiry.softDestroy');

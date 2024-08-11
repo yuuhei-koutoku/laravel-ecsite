@@ -24,6 +24,7 @@
         -   商品画像、カテゴリー、商品名、単価を表示
         -   カテゴリ検索
         -   キーワード検索
+        -   CSVダウンロード（全てのページ または 現在のページのみ）
         -   並び替え（おすすめ順、料金が高い順、料金が安い順、新しい順、古い順）
         -   ページネーション（表示件数切り替え（20 件、50 件、100 件））
     -   商品詳細
@@ -131,11 +132,11 @@ XAMPP/MAMP または他の開発環境で DB を起動した後に`php artisan m
 
 ### 画像ダミーデータの設定
 
-画像のダミーデータは `public/images` フォルダ内に `sample1.jpg` 〜 `sample6.jpg` として保存しています。
+画像のダミーデータは `public/images` フォルダ内に `product1.jpg` 〜 `product12.jpg` として保存しています。また、画像登録なしの場合のダミーデータは、`no_image.jpg`として保存しています。
 
 `php artisan storage:link` で `storage` フォルダにリンク後、`storage/app/public/products` フォルダ内に保存すると表示されます。（`products` フォルダがない場合は作成してください。）
 
-ショップの画像も表示する場合は、`storage/app/public/shops` フォルダを作成し、画像を保存してください。
+ショップの画像も表示する場合は、`storage/app/public/shops` フォルダを作成し、`shop1.jpg` 〜 `shop3.jpg` を保存してください。
 
 ### 決済のテスト
 

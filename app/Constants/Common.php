@@ -5,7 +5,9 @@ namespace App\Constants;
 class Common
 {
     const PRODUCT_ADD = '1';
+
     const PRODUCT_REDUCE = '2';
+
     const PRODUCT_DECISION = '3';
 
     const PRODUCT_LIST = [
@@ -15,9 +17,13 @@ class Common
     ];
 
     const ORDER_RECOMMEND = '0';
+
     const ORDER_HIGHER = '1';
+
     const ORDER_LOWER = '2';
+
     const ORDER_LATER = '3';
+
     const ORDER_OLDER = '4';
 
     const SORT_ORDER = [
@@ -25,6 +31,6 @@ class Common
         'higherPrice' => self::ORDER_HIGHER,
         'lowerPrice' => self::ORDER_LOWER,
         'later' => self::ORDER_LATER,
-        'older' => self::ORDER_OLDER
+        'older' => self::ORDER_OLDER,
     ];
 }
