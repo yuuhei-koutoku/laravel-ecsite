@@ -3,11 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Shop;
-use App\Models\Image;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Owner extends Authenticatable
 {

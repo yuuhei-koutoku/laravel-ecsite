@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Shop;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
-use InterventionImage;
 use App\Http\Requests\UploadImageRequest;
+use App\Models\Shop;
 use App\Services\ImageService;
+use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
 {
@@ -19,14 +16,15 @@ class ShopController extends Controller
 
         $this->middleware(function ($request, $next) {
             $id = $request->route()->parameter('shop'); // shopのid取得
-            if (!is_null($id)) {
+            if (! is_null($id)) {
                 $shopsOwnerId = Shop::findOrFail($id)->owner->id;
-                $shopId = (int)$shopsOwnerId; // キャスト 文字列→数値に型変換
+                $shopId = (int) $shopsOwnerId; // キャスト 文字列→数値に型変換
                 $ownerId = Auth::id();
                 if ($shopId !== $ownerId) { // 同じでなかったら
                     abort(404); // 404画面表示
                 }
             }
+
             return $next($request);
         });
     }
@@ -54,7 +52,7 @@ class ShopController extends Controller
         ]);
 
         $imageFile = $request->image;
-        if (!is_null($imageFile) && $imageFile->isValid()) {
+        if (! is_null($imageFile) && $imageFile->isValid()) {
             $fileNameToStore = ImageService::upload($imageFile, 'shops');
         }
 
@@ -62,7 +60,7 @@ class ShopController extends Controller
         $shop->name = $request->name;
         $shop->information = $request->information;
         $shop->is_selling = $request->is_selling;
-        if (!is_null($imageFile) && $imageFile->isValid()) {
+        if (! is_null($imageFile) && $imageFile->isValid()) {
             $shop->filename = $fileNameToStore;
         }
 
@@ -70,6 +68,6 @@ class ShopController extends Controller
 
         return to_route('owner.shops.index')
         ->with(['message' => '店舗情報を更新しました。',
-        'status' => 'info']);
+            'status' => 'info']);
     }
 }

@@ -20,14 +20,14 @@ class ProductFactory extends Factory
             'name' => $this->faker->name,
             'information' => $this->faker->realText,
             'price' => $this->faker->numberBetween(10, 999),
-            'is_selling' => $this->faker->numberBetween(0,1),
+            'is_selling' => $this->faker->numberBetween(0, 1),
             'sort_order' => $this->faker->randomNumber,
-            'shop_id' => $this->faker->numberBetween(1,3),
-            'secondary_category_id' => $this->faker->numberBetween(1,81),
-            'image1' => $this->faker->numberBetween(1,6),
-            'image2' => $this->faker->numberBetween(1,6),
-            'image3' => $this->faker->numberBetween(1,6),
-            'image4' => $this->faker->numberBetween(1,6),
+            'shop_id' => $this->faker->numberBetween(1, 3),
+            'secondary_category_id' => $this->faker->numberBetween(1, 81),
+            'image1' => $this->faker->numberBetween(2, 13),
+            'image2' => $this->faker->numberBetween(2, 13),
+            'image3' => $this->faker->numberBetween(2, 13),
+            'image4' => $this->faker->numberBetween(2, 13),
         ];
     }
 }

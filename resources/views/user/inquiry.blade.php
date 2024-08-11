@@ -27,7 +27,7 @@
                                                 <form method="post" action="{{ route('user.inquiry.softDestroy', ['id' => $inquiry->id]) }}" id="delete_{{ $inquiry->id }}">
                                                     @csrf
                                                     @method('POST')
-                                                        <a href="#" data-id="{{ $inquiry->id }}" onclick="deletePost(this)" class="text-white bg-pink-500 text-xs rounded-lg px-2 py-1 mb-8 hover:bg-pink-600">送信取消</a>
+                                                    <a href="#" data-id="{{ $inquiry->id }}" onclick="deletePost(this)" class="text-white bg-pink-500 text-xs rounded-lg px-2 py-1 mb-8 hover:bg-pink-600">送信取消</a>
                                                 </form>
                                                 <p class="text-gray-700 text-xs px-2 py-1 mb-8">送信日時：{{  \Carbon\Carbon::parse($inquiry->created_at)->format('Y年n月j日 G時i分') }}</p>
                                             </div>
