@@ -1,9 +1,9 @@
 @php
 if ($type === 'shops') {
-    $path = 'storage/shops/';
+    $path = '/shops/';
 }
 if ($type === 'products') {
-    $path = 'storage/products/';
+    $path = '/products/';
 }
 @endphp
 
@@ -11,6 +11,6 @@ if ($type === 'products') {
     @if(empty($filename))
         <img src="{{ asset('images/no_image.jpg') }}">
     @else
-        <img src="{{ asset($path . $filename) }}">
+        <img src="{{ Storage::disk('s3')->url( $path . $filename) }}">
     @endif
 </div>
