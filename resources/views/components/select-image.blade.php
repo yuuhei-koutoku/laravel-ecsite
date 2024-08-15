@@ -24,7 +24,7 @@ $cId = $currentId ?? '';
                         <div class="border rounded-md p-2 md:p-4">
                             <img class="image" data-id="{{ $name }}_{{ $image->id }}"
                                 data-file="{{ $image->filename }}"
-                                data-path="{{ asset('storage/products/') }}"
+                                data-path="{{ Storage::disk('s3')->url( 'products' ) }}"
                                 data-modal="{{ $modal }}"
                                 src="{{ Storage::disk('s3')->url( 'products/' . $image->filename) }}">
                             <div class="text-gray-700">{{ $image->title }}</div>

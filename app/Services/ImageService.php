@@ -15,11 +15,11 @@ class ImageService
             $file = $imageFile;
         }
 
-        $fileName = uniqid(rand().'_');
+        $fileName = uniqid(mt_rand() . '_');
         $extension = $file->extension();
-        $fileNameToStore = $fileName.'.'.$extension;
+        $fileNameToStore = $fileName . '.' . $extension;
         $resizedImage = InterventionImage::make($file)->resize(1920, 1080)->encode();
-        Storage::put('public/'.$folderName.'/'.$fileNameToStore, $resizedImage);
+        Storage::disk('s3')->put($folderName . '/' . $fileNameToStore, $resizedImage);
 
         return $fileNameToStore;
     }
