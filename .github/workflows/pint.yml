@@ -1,0 +1,34 @@
+name: Run Laravel Pint
+
+on: [pull_request]
+
+jobs:
+  pint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: bcmath, ctype, curl, dom, fileinfo, gd, intl, json, mbstring, openssl, pdo_mysql, pdo_pgsql, tokenizer, xml
+          tools: composer:v2.5.4
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest --ansi
+
+      - name: Run Laravel Pint
+        run: vendor/bin/pint
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "GitHub Actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Automated code format" || exit 0
+          git push

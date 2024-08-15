@@ -20,25 +20,25 @@ return new class extends Migration
             $table->unsignedInteger('price');
             $table->boolean('is_selling');
             $table->integer('sort_order')
-            ->nullable();
+                ->nullable();
             $table->foreignId('shop_id')
-            ->constrained()
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->foreignId('secondary_category_id')
-            ->constrained();
+                ->constrained();
             $table->foreignId('image1')
-            ->nullable()
-            ->constrained('images');
+                ->nullable()
+                ->constrained('images');
             $table->foreignId('image2')
-            ->nullable()
-            ->constrained('images');
+                ->nullable()
+                ->constrained('images');
             $table->foreignId('image3')
-            ->nullable()
-            ->constrained('images');
+                ->nullable()
+                ->constrained('images');
             $table->foreignId('image4')
-            ->nullable()
-            ->constrained('images');
+                ->nullable()
+                ->constrained('images');
             $table->timestamps();
         });
     }

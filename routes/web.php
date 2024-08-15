@@ -41,7 +41,7 @@ Route::prefix('cart')->
         Route::get('checkout', [CartController::class, 'checkout'])->name('cart.checkout');
         Route::get('success', [CartController::class, 'success'])->name('cart.success');
         Route::get('cancel', [CartController::class, 'cancel'])->name('cart.cancel');
-});
+    });
 
 // お問い合わせ関連
 Route::prefix('inquiry')->
@@ -49,7 +49,7 @@ Route::prefix('inquiry')->
         Route::get('/', [InquiryController::class, 'index'])->name('inquiry.index');
         Route::post('/', [InquiryController::class, 'store'])->name('inquiry.store');
         Route::post('{id}/destroy', [InquiryController::class, 'softDestroy'])->name('inquiry.softDestroy');
-});
+    });
 
 // Route::get('/dashboard', function () {
 //     return view('user.dashboard');

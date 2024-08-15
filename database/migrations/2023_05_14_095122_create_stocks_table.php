@@ -16,14 +16,14 @@ return new class extends Migration
         Schema::create('t_stocks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')
-            ->constrained()
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->foreignId('user_id')
-            ->nullable()
-            ->constrained()
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
+                ->nullable()
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->tinyInteger('type');
             $table->integer('quantity');
             $table->timestamps();

@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('sort_order');
             $table->foreignId('primary_category_id')
-            ->constrained();
+                ->constrained();
             $table->timestamps();
         });
     }

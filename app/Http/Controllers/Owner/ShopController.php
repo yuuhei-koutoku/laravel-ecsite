@@ -7,7 +7,6 @@ use App\Http\Requests\UploadImageRequest;
 use App\Models\Shop;
 use App\Services\ImageService;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 
 class ShopController extends Controller
 {
@@ -69,7 +68,7 @@ class ShopController extends Controller
         $shop->save();
 
         return to_route('owner.shops.index')
-        ->with(['message' => '店舗情報を更新しました。',
-            'status' => 'info']);
+            ->with(['message' => '店舗情報を更新しました。',
+                'status' => 'info']);
     }
 }
