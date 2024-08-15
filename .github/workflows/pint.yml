@@ -23,4 +23,12 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-suggest --ansi
 
       - name: Run Laravel Pint
-        run: vendor/bin/pint --test
+        run: vendor/bin/pint
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "GitHub Actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Automated code format" || exit 0
+          git push
