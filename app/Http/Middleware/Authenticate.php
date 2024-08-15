@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 class Authenticate extends Middleware
 {
-    protected $user_route = 'user.login';
+    protected $user_route = 'items.index';
 
     protected $owner_route = 'owner.login';
 

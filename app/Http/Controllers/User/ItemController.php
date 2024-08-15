@@ -11,22 +11,22 @@ use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:users');
+    // public function __construct()
+    // {
+    //     $this->middleware('auth:users');
 
-        $this->middleware(function ($request, $next) {
-            $id = $request->route()->parameter('item');
-            if (! is_null($id)) {
-                $itemId = Product::availableItems()->where('products.id', $id)->exists();
-                if (! $itemId) {
-                    abort(404);
-                }
-            }
+    //     $this->middleware(function ($request, $next) {
+    //         $id = $request->route()->parameter('item');
+    //         if (! is_null($id)) {
+    //             $itemId = Product::availableItems()->where('products.id', $id)->exists();
+    //             if (! $itemId) {
+    //                 abort(404);
+    //             }
+    //         }
 
-            return $next($request);
-        });
-    }
+    //         return $next($request);
+    //     });
+    // }
 
     public function index(Request $request)
     {
