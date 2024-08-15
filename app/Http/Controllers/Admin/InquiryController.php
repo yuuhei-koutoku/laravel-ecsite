@@ -16,14 +16,14 @@ class InquiryController extends Controller
     public function index()
     {
         $inquiries = Inquiry::select('user_id', 'message', 'admin', 'deleted_at')
-        ->withTrashed()
-        ->whereIn('id', function ($query) {
-            $query->selectRaw('MAX(id)')
-                ->from('inquiries')
-                ->groupBy('user_id');
-        })
-        ->orderByDesc('created_at')
-        ->get();
+            ->withTrashed()
+            ->whereIn('id', function ($query) {
+                $query->selectRaw('MAX(id)')
+                    ->from('inquiries')
+                    ->groupBy('user_id');
+            })
+            ->orderByDesc('created_at')
+            ->get();
 
         return view('admin.inquiries.index', compact('inquiries'));
     }
@@ -31,11 +31,11 @@ class InquiryController extends Controller
     public function show($id)
     {
         $inquiries = Inquiry::where('user_id', $id)
-        ->with(['user' => function ($query) {
-            $query->select('id', 'name');
-        }])
-        ->withTrashed()
-        ->get();
+            ->with(['user' => function ($query) {
+                $query->select('id', 'name');
+            }])
+            ->withTrashed()
+            ->get();
 
         return view('admin.inquiries.show', compact('inquiries'));
     }
@@ -51,8 +51,8 @@ class InquiryController extends Controller
         ]);
 
         return to_route('admin.inquiries.show', compact('user_id'))
-        ->with(['message' => 'メッセージを送信しました。',
-            'status' => 'info']);
+            ->with(['message' => 'メッセージを送信しました。',
+                'status' => 'info']);
     }
 
     public function softDestroy($id)
@@ -62,7 +62,7 @@ class InquiryController extends Controller
         $inquiry->delete();
 
         return to_route('admin.inquiries.show', compact('user_id'))
-        ->with(['message' => 'メッセージの送信を取り消しました。',
-            'status' => 'alert']);
+            ->with(['message' => 'メッセージの送信を取り消しました。',
+                'status' => 'alert']);
     }
 }

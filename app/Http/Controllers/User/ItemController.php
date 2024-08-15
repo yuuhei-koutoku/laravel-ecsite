@@ -31,41 +31,41 @@ class ItemController extends Controller
     public function index(Request $request)
     {
         $categories = PrimaryCategory::with('secondary')
-        ->get();
+            ->get();
 
         $products = Product::availableItems()
-        ->selectCategory($request->category ?? '0')
-        ->searchKeyword($request->keyword)
-        ->sortOrder($request->sort);
+            ->selectCategory($request->category ?? '0')
+            ->searchKeyword($request->keyword)
+            ->sortOrder($request->sort);
 
         if ($request->download === 'all_pages') {
-        return ItemService::csvDownload($products->get(), 'all_pages');
+            return ItemService::csvDownload($products->get(), 'all_pages');
         }
 
         $products = $products->paginate($request->pagination ?? '20');
 
         if ($request->download === 'current_page') {
-        return ItemService::csvDownload($products, 'current_page');
+            return ItemService::csvDownload($products, 'current_page');
         }
 
         $keyword = $request->keyword;
 
         return view('user.index',
-        compact('products', 'categories', 'keyword'));
+            compact('products', 'categories', 'keyword'));
     }
 
     public function show($id)
     {
         $product = Product::findOrFail($id);
         $quantity = Stock::where('product_id', $product->id)
-        ->whereNot('type', 3)
-        ->sum('quantity');
+            ->whereNot('type', 3)
+            ->sum('quantity');
 
         if ($quantity > 9) {
             $quantity = 9;
         }
 
         return view('user.show',
-        compact('product', 'quantity'));
+            compact('product', 'quantity'));
     }
 }

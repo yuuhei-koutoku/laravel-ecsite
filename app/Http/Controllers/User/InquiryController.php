@@ -17,8 +17,8 @@ class InquiryController extends Controller
     public function index()
     {
         $inquiries = Inquiry::where('user_id', Auth::id())
-        ->withTrashed()
-        ->get();
+            ->withTrashed()
+            ->get();
 
         return view('user.inquiry', compact('inquiries'));
     }
@@ -32,8 +32,8 @@ class InquiryController extends Controller
         ]);
 
         return to_route('user.inquiry.index')
-        ->with(['message' => 'メッセージを送信しました。',
-            'status' => 'info']);
+            ->with(['message' => 'メッセージを送信しました。',
+                'status' => 'info']);
     }
 
     public function softDestroy($id)
@@ -41,7 +41,7 @@ class InquiryController extends Controller
         Inquiry::findOrFail($id)->delete();
 
         return to_route('user.inquiry.index')
-        ->with(['message' => 'メッセージの送信を取り消しました。',
-            'status' => 'alert']);
+            ->with(['message' => 'メッセージの送信を取り消しました。',
+                'status' => 'alert']);
     }
 }

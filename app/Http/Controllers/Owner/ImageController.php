@@ -34,8 +34,8 @@ class ImageController extends Controller
     public function index()
     {
         $images = Image::where('owner_id', Auth::id())
-        ->orderBy('updated_at', 'desc')
-        ->paginate(20);
+            ->orderBy('updated_at', 'desc')
+            ->paginate(20);
 
         return view('owner.images.index', compact('images'));
     }
@@ -69,8 +69,8 @@ class ImageController extends Controller
         }
 
         return to_route('owner.images.index')
-        ->with(['message' => '画像登録を実施しました。',
-            'status' => 'info']);
+            ->with(['message' => '画像登録を実施しました。',
+                'status' => 'info']);
     }
 
     /**
@@ -97,8 +97,8 @@ class ImageController extends Controller
         $image->save();
 
         return to_route('owner.images.index')
-        ->with(['message' => '画像情報を更新しました。',
-            'status' => 'info']);
+            ->with(['message' => '画像情報を更新しました。',
+                'status' => 'info']);
     }
 
     public function destroy($id)
@@ -106,10 +106,10 @@ class ImageController extends Controller
         $image = Image::findOrFail($id);
 
         $imageInProducts = Product::where('image1', $image->id)
-        ->orWhere('image2', $image->id)
-        ->orWhere('image3', $image->id)
-        ->orWhere('image4', $image->id)
-        ->get();
+            ->orWhere('image2', $image->id)
+            ->orWhere('image3', $image->id)
+            ->orWhere('image4', $image->id)
+            ->get();
 
         if ($imageInProducts) {
             $imageInProducts->each(function ($product) use ($image) {
@@ -141,7 +141,7 @@ class ImageController extends Controller
         Image::findOrFail($id)->delete();
 
         return to_route('owner.images.index')
-        ->with(['message' => '画像を削除しました。',
-            'status' => 'alert']);
+            ->with(['message' => '画像を削除しました。',
+                'status' => 'alert']);
     }
 }
