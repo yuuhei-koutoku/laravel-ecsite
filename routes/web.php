@@ -21,11 +21,11 @@ Route::get('/', function () {
     return view('user.welcome');
 });
 
-Route::middleware('auth:users')->group(function () {
-    // 商品関連
-    Route::get('/', [ItemController::class, 'index'])->name('items.index');
-    Route::get('show/{item}', [ItemController::class, 'show'])->name('items.show');
+// 商品関連
+Route::get('/', [ItemController::class, 'index'])->name('items.index');
+Route::get('show/{item}', [ItemController::class, 'show'])->name('items.show');
 
+Route::middleware('auth:users')->group(function () {
     // プロフィール関連
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
