@@ -15,7 +15,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.0.2'
+          php-version: '8.2'
           extensions: bcmath, ctype, curl, dom, fileinfo, gd, intl, json, mbstring, openssl, pdo_mysql, pdo_pgsql, tokenizer, xml
           tools: composer:v2.5.4
 
