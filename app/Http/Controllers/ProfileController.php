@@ -23,13 +23,13 @@ class ProfileController extends Controller
     public function edit(Request $request): View
     {
         $stocks = DB::table('t_stocks')
-        ->join('products', 't_stocks.product_id', '=', 'products.id')
-        ->join('images', 'products.image1', '=', 'images.id')
-        ->select('images.filename', 'products.name', 'products.price', 't_stocks.quantity', 't_stocks.created_at')
-        ->where('t_stocks.user_id', Auth::id())
-        ->where('t_stocks.type', 3)
-        ->orderBy('t_stocks.created_at', 'desc')
-        ->get();
+            ->join('products', 't_stocks.product_id', '=', 'products.id')
+            ->join('images', 'products.image1', '=', 'images.id')
+            ->select('images.filename', 'products.name', 'products.price', 't_stocks.quantity', 't_stocks.created_at')
+            ->where('t_stocks.user_id', Auth::id())
+            ->where('t_stocks.type', 3)
+            ->orderBy('t_stocks.created_at', 'desc')
+            ->get();
 
         return view('profile.edit', [
             'user' => $request->user(),

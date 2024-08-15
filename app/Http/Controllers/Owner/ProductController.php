@@ -36,10 +36,10 @@ class ProductController extends Controller
     public function index()
     {
         $ownerInfo = Owner::with('shop.product.imageFirst')
-        ->where('id', Auth::id())->get();
+            ->where('id', Auth::id())->get();
 
         return view('owner.products.index',
-        compact('ownerInfo'));
+            compact('ownerInfo'));
     }
 
     /**
@@ -50,19 +50,19 @@ class ProductController extends Controller
     public function create()
     {
         $shops = Shop::where('owner_id', Auth::id())
-        ->select('id', 'name')
-        ->get();
+            ->select('id', 'name')
+            ->get();
 
         $images = Image::where('owner_id', Auth::id())
-        ->select('id', 'title', 'filename')
-        ->orderBy('updated_at', 'desc')
-        ->get();
+            ->select('id', 'title', 'filename')
+            ->orderBy('updated_at', 'desc')
+            ->get();
 
         $categories = PrimaryCategory::with('secondary')
-        ->get();
+            ->get();
 
         return view('owner.products.create',
-        compact('shops', 'images', 'categories'));
+            compact('shops', 'images', 'categories'));
     }
 
     /**
@@ -102,30 +102,30 @@ class ProductController extends Controller
         }
 
         return to_route('owner.products.index')
-        ->with(['message' => '商品登録を実施しました。',
-            'status' => 'info']);
+            ->with(['message' => '商品登録を実施しました。',
+                'status' => 'info']);
     }
 
     public function edit($id)
     {
         $product = Product::findOrFail($id);
         $quantity = Stock::where('product_id', $product->id)
-        ->sum('quantity');
+            ->sum('quantity');
 
         $shops = Shop::where('owner_id', Auth::id())
-        ->select('id', 'name')
-        ->get();
+            ->select('id', 'name')
+            ->get();
 
         $images = Image::where('owner_id', Auth::id())
-        ->select('id', 'title', 'filename')
-        ->orderBy('updated_at', 'desc')
-        ->get();
+            ->select('id', 'title', 'filename')
+            ->orderBy('updated_at', 'desc')
+            ->get();
 
         $categories = PrimaryCategory::with('secondary')
-        ->get();
+            ->get();
 
         return view('owner.products.edit',
-        compact('product', 'quantity', 'shops', 'images', 'categories'));
+            compact('product', 'quantity', 'shops', 'images', 'categories'));
     }
 
     public function update(ProductRequest $request, $id)
@@ -136,14 +136,14 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($id);
         $quantity = Stock::where('product_id', $product->id)
-        ->sum('quantity');
+            ->sum('quantity');
 
         if ($request->current_quantity !== $quantity) {
             $id = $request->route()->parameter('product');
 
             return to_route('owner.products.edit', ['product' => $id])
-            ->with(['message' => '在庫数が変更されています。再度確認してください。',
-                'status' => 'alert']);
+                ->with(['message' => '在庫数が変更されています。再度確認してください。',
+                    'status' => 'alert']);
         } else {
             try {
                 DB::transaction(function () use ($request, $product) {
@@ -178,8 +178,8 @@ class ProductController extends Controller
             }
 
             return to_route('owner.products.index')
-            ->with(['message' => '商品情報を更新しました。',
-                'status' => 'info']);
+                ->with(['message' => '商品情報を更新しました。',
+                    'status' => 'info']);
         }
     }
 
@@ -194,7 +194,7 @@ class ProductController extends Controller
         Product::findOrFail($id)->delete();
 
         return to_route('owner.products.index')
-        ->with(['message' => '商品を削除しました。',
-            'status' => 'alert']);
+            ->with(['message' => '商品を削除しました。',
+                'status' => 'alert']);
     }
 }

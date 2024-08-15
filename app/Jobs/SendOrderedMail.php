@@ -32,6 +32,6 @@ class SendOrderedMail implements ShouldQueue
     public function handle()
     {
         Mail::to($this->product['email'])
-        ->send(new OrderedMail($this->product, $this->user));
+            ->send(new OrderedMail($this->product, $this->user));
     }
 }

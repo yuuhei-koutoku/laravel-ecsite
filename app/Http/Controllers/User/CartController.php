@@ -26,13 +26,13 @@ class CartController extends Controller
         }
 
         return view('user.cart',
-        compact('products', 'totalPrice'));
+            compact('products', 'totalPrice'));
     }
 
     public function add(Request $request)
     {
         $itemInCart = Cart::where('product_id', $request->product_id)
-        ->where('user_id', Auth::id())->first();
+            ->where('user_id', Auth::id())->first();
 
         if ($itemInCart) {
             $itemInCart->quantity += $request->quantity;
@@ -51,8 +51,8 @@ class CartController extends Controller
     public function delete($id)
     {
         Cart::where('product_id', $id)
-        ->where('user_id', Auth::id())
-        ->delete();
+            ->where('user_id', Auth::id())
+            ->delete();
 
         return to_route('user.cart.index');
     }
@@ -116,7 +116,7 @@ class CartController extends Controller
         $publicKey = config('stripe.public_key');
 
         return view('user.checkout',
-        compact('session', 'publicKey'));
+            compact('session', 'publicKey'));
     }
 
     public function success()
