@@ -14,7 +14,7 @@
                             <div class="md:flex md:items-center mb-2">
                                 <div class="md:w-3/12">
                                     @if ($product->imageFirst->filename !== null)
-                                        <img src="{{ asset('storage/products/' . $product->imageFirst->filename )}}">
+                                        <img src="{{ Storage::disk('s3')->url('products/' . $product->imageFirst->filename) }}">
                                     @else
                                         <img src="">
                                     @endif
