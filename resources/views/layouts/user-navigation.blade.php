@@ -103,7 +103,12 @@
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             @guest
-                <p>test</p>
+                <x-responsive-nav-link :href="route('user.login')">
+                    ログイン
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('user.register')">
+                    新規登録
+                </x-responsive-nav-link>
             @endguest
             @auth
                 <div class="px-4">
