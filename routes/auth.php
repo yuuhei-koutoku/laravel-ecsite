@@ -9,6 +9,7 @@ use App\Http\Controllers\User\Auth\PasswordController;
 use App\Http\Controllers\User\Auth\PasswordResetLinkController;
 use App\Http\Controllers\User\Auth\RegisteredUserController;
 use App\Http\Controllers\User\Auth\VerifyEmailController;
+use App\Http\Controllers\User\GuestLoginController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -21,6 +22,9 @@ Route::middleware('guest')->group(function () {
         ->name('login');
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
+
+    Route::post('login', [GuestLoginController::class, 'login'])
+        ->name('guestLogin');
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
         ->name('password.request');
