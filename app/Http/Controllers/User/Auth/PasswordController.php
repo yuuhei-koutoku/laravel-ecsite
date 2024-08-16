@@ -16,7 +16,9 @@ class PasswordController extends Controller
      */
     public function update(Request $request): RedirectResponse
     {
-        if (GuestLoginController::isGuestUser()) return redirect()->intended('/profile');
+        if (GuestLoginController::isGuestUser()) {
+            return redirect()->intended('/profile');
+        }
 
         $validated = $request->validateWithBag('updatePassword', [
             'current_password' => ['required', 'current_password'],

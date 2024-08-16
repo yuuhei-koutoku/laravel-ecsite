@@ -15,6 +15,7 @@ class GuestLoginController extends Controller
     {
         if (Auth::loginUsingId(self::GUEST_USER_ID)) {
             session()->regenerate();
+
             return redirect()->intended(RouteServiceProvider::HOME);
         }
 
