@@ -43,4 +43,10 @@
             </x-primary-button>
         </div>
     </form>
+    <form method="POST" action="{{ route('user.guestLogin') }}">
+        @csrf
+        <x-primary-button class="ml-3">
+            {{ __('ゲストログイン') }}
+        </x-primary-button>
+    </form>
 </x-guest-layout>
