@@ -72,7 +72,8 @@ class CartController extends Controller
             $lineItems = [];
             foreach ($products as $product) {
                 $quantity = '';
-                $quantity = Stock::where('product_id', $product->id)->lockForUpdate()->sum('quantity');
+                $stocks = Stock::where('product_id', $product->id)->lockForUpdate()->get();
+                $quantity = $stocks->sum('quantity');
 
                 if ($product->pivot->quantity > $quantity) {
                     return to_route('user.cart.index');
