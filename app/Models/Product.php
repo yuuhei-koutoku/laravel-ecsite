@@ -79,7 +79,7 @@ class Product extends Model
             ->select('product_id',
                 DB::raw('sum(quantity) as quantity'))
             ->groupBy('product_id')
-            ->having('quantity', '>=', 1);
+            ->havingRaw('sum(quantity) >= 1');
 
         return $query
             ->joinSub($stocks, 'stock', function ($join) {
