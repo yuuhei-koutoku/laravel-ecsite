@@ -18,7 +18,7 @@ class InquirySeeder extends Seeder
             [
                 'user_id' => 1,
                 'admin' => 0,
-                'message' => "注文した商品の返品は可能でしょうか？",
+                'message' => '注文した商品の返品は可能でしょうか？',
             ],
             [
                 'user_id' => 1,
