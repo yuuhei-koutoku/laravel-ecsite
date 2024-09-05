@@ -14,19 +14,15 @@ class StockSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('t_stocks')->insert([
-            [
-                'product_id' => 1,
-                'user_id' => 1,
-                'type' => 1,
-                'quantity' => 5,
-            ],
-            [
-                'product_id' => 1,
-                'user_id' => 1,
-                'type' => 1,
-                'quantity' => -2,
-            ],
-        ]);
+        for ($i = 0; $i < 138; $i++) {
+            DB::table('t_stocks')->insert([
+                [
+                    'product_id' => $i + 1,
+                    'user_id' => null,
+                    'type' => 1,
+                    'quantity' => 50,
+                ],
+            ]);
+        }
     }
 }
