@@ -31,12 +31,14 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 @guest
-                    <x-nav-link :href="route('user.login')">
-                        ログイン
-                    </x-nav-link>
-                    <x-nav-link :href="route('user.register')">
-                        新規登録
-                    </x-nav-link>
+                    @unless (Request::routeIs('owner.login') || Request::routeIs('admin.login'))
+                        <x-nav-link :href="route('user.login')" :active="request()->routeIs('user.login')" class="sm:h-16 sm:ml-8">
+                            ログイン
+                        </x-nav-link>
+                        <x-nav-link :href="route('user.register')" :active="request()->routeIs('user.register')" class="sm:h-16 sm:ml-8">
+                            アカウント登録
+                        </x-nav-link>
+                    @endunless
                 @endguest
                 @auth
                     <x-dropdown align="right" width="48">
@@ -107,7 +109,7 @@
                     ログイン
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('user.register')">
-                    新規登録
+                    アカウント登録
                 </x-responsive-nav-link>
             @endguest
             @auth

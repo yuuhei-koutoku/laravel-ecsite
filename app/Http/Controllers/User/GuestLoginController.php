@@ -11,7 +11,7 @@ class GuestLoginController extends Controller
 {
     private const GUEST_USER_ID = 1;
 
-    public function login(): RedirectResponse
+    public function guestLogin(): RedirectResponse
     {
         if (Auth::loginUsingId(self::GUEST_USER_ID)) {
             session()->regenerate();
