@@ -22,7 +22,7 @@
                             <input name="keyword" value="{{ $keyword }}" class="border border-gray-500 py-2" placeholder="キーワードを入力">
                         </div>
                         <div>
-                            <button class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">検索する</button>
+                            <button class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">検索</button>
                         </div>
                     </div>
                 </div>
