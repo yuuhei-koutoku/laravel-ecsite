@@ -42,11 +42,11 @@
 
     <form method="POST" action="{{ route('user.guestLogin') }}" class="flex items-center justify-center">
         @csrf
-        <x-primary-button class="bg-emerald-500 hover:bg-emerald-600 my-3 w-48">
+        <button type="submit" class="text-white bg-emerald-500 hover:bg-emerald-600 border-0 py-2 px-6 focus:outline-none rounded text-lg mt-3 w-48">
             {{ __('ゲストログイン') }}
-        </x-primary-button>
+        </button>
     </form>
-    <a class="flex items-center justify-center underline text-sm text-gray-600 hover:text-gray-900 rounded-md" href="{{ route('user.register') }}">
+    <a class="flex items-center justify-center underline text-sm text-gray-600 hover:text-gray-900 rounded-md mt-3" href="{{ route('user.register') }}">
         {{ __('アカウント登録はこちら') }}
     </a>
 </x-guest-layout>
