@@ -44,7 +44,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>更新する</x-primary-button>
+            <x-primary-button>更新</x-primary-button>
 
             @if (session('status') === 'profile-updated')
                 <p

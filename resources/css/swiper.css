@@ -1,4 +1,5 @@
-.swiper-container {
-    /* width: 600px; */
-    height: 300px;
+/* Swiper navigation buttons custom color */
+.swiper-button-prev:after, .swiper-button-next:after {
+    color: black; /* 黒色に設定 */
+    background-color: rgba(255, 255, 255, 0.5); /* 白色かつ透過率50% */
 }

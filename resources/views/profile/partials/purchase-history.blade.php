@@ -9,11 +9,11 @@
         <p class="text-center">商品を購入した履歴はありません。</p>
     @else
         @foreach ($stocks as $stock)
-            <div class="md:flex my-2">
-                <div class="md:w-3/12">
+            <div class="md:flex my-6">
+                <div class="mb-2 md:mb-0 md:w-5/12 lg:w-1/3">
                     <x-thumbnail filename="{{ $stock->filename ?? '' }}" type="products" />
                 </div>
-                <div class="md:w-8/12 md:ml-4">
+                <div class="md:w-7/12 lg:w-2/3 md:ml-4">
                     <div class="mb-2">
                         商品名：{{ $stock->name }}<br>
                         数量：{{ $stock->quantity }}個<br>
