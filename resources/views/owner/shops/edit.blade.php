@@ -47,10 +47,10 @@
                                         <input type="radio" name="is_selling" value="0" class="mr-2" @if($shop->is_selling === 0) { checked } @endif>停止中
                                     </div>
                                 </div>
-                                <div class="p-2 w-full flex justify-around mt-4">
-                                    <button type="button" onclick="location.href='{{ route('owner.shops.index') }}'" class="bg-gray-200 border-0 py-2 px-8 focus:outline-none hover:bg-gray-400 rounded text-lg">戻る</button>
-                                    <button type="submit" class="text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg">更新する</button>
-                                </div>
+                            </div>
+                            <div class="p-2 w-1/2 mx-auto flex justify-between mt-4">
+                                <button type="button" onclick="location.href='{{ route('owner.shops.index') }}'" class="bg-gray-200 border-0 py-2 px-8 focus:outline-none hover:bg-gray-400 rounded text-lg">戻る</button>
+                                <button type="submit" class="text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg">更新</button>
                             </div>
                         </div>
                     </form>

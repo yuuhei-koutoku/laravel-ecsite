@@ -12,7 +12,7 @@
     <x-danger-button
         x-data=""
         x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-    >{{ __('アカウントを削除する') }}</x-danger-button>
+    >{{ __('アカウントを削除') }}</x-danger-button>
 
     <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
         <form method="post" action="{{ route('user.profile.destroy') }}" class="p-6">
@@ -47,7 +47,7 @@
                 </x-secondary-button>
 
                 <x-danger-button class="ml-3">
-                    {{ __('アカウントを削除する') }}
+                    {{ __('アカウントを削除') }}
                 </x-danger-button>
             </div>
         </form>
