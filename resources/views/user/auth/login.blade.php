@@ -42,7 +42,7 @@
 
     <form method="POST" action="{{ route('user.guestLogin') }}" class="flex items-center justify-center">
         @csrf
-        <x-primary-button class="bg-green-500 hover:bg-green-600 my-3 w-48">
+        <x-primary-button class="bg-emerald-500 hover:bg-emerald-600 my-3 w-48">
             {{ __('ゲストログイン') }}
         </x-primary-button>
     </form>
