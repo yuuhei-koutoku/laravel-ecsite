@@ -160,6 +160,11 @@ return [
         'quantity' => '数量',
         'current_password' => '現在のパスワード',
         'message' => 'メッセージ',
+        'information' => '詳細情報',
+        'files' => '画像',
+        'title' => 'タイトル',
+        'price' => '価格',
+        'image' => '画像',
     ],
 
 ];

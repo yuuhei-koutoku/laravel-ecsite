@@ -31,7 +31,7 @@
 
         <!-- Confirm Password -->
         <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('パスワード（確認）')" />
+            <x-input-label for="password_confirmation" :value="__('パスワード(確認用)')" />
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full"
                             type="password"

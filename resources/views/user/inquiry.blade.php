@@ -55,9 +55,11 @@
                         <div class="-m-2">
                             <div class="p-2 w-3/4 mx-auto">
                                 <div class="relative">
-                                    <textarea name="message" rows="3" placeholder="運営への問い合わせ内容をを入力   例:「配達が完了しました」となっているが、商品が届いていない" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-sm md:text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"></textarea>
-                                    <button class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">送信</button>
-                                    <x-input-error :messages="$errors->get('message')" class="mt-2" />
+                                    <textarea name="message" rows="3" placeholder="運営への問い合わせ内容をを入力   例:「配達が完了しました」となっているが、商品が届いていない" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-sm md:text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"></textarea>
+                                    <div class="flex">
+                                        <x-input-error :messages="$errors->get('message')" class="mt-2" />
+                                        <button class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">送信</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

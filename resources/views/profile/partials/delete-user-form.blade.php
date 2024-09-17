@@ -26,6 +26,9 @@
             <p class="mt-1 text-sm text-gray-600">
                 {{ __('アカウントを削除すると、関連するデータが永久に削除されます。アカウントを削除すると、この操作は元に戻せません。') }}
             </p>
+            <p class="mt-1 text-sm text-gray-600">
+                {{ __('アカウントを削除する場合は、テキスト入力フィールドにパスワードを入力してください。') }}
+            </p>
 
             <div class="mt-6">
                 <x-input-label for="password" value="{{ __('Password') }}" class="sr-only" />
@@ -35,7 +38,7 @@
                     name="password"
                     type="password"
                     class="mt-1 block w-3/4"
-                    placeholder="{{ __('パスワード') }}"
+                    placeholder="{{ __('••••••••') }}"
                 />
 
                 <x-input-error :messages="$errors->userDeletion->get('password')" class="mt-2" />
