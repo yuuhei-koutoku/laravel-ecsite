@@ -15,21 +15,21 @@
                             <div class="p-2 w-1/2 mx-auto">
                                 <div class="relative">
                                     <label for="name" class="leading-7 text-sm text-gray-600">商品名 ※必須</label>
-                                    <input type="text" id="name" name="name" value="{{ old('name') }}" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                    <input type="text" id="name" name="name" value="{{ old('name') }}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                 </div>
                             </div>
                             <div class="p-2 w-1/2 mx-auto">
                                 <div class="relative">
                                     <label for="information" class="leading-7 text-sm text-gray-600">商品情報 ※必須</label>
-                                    <textarea id="information" name="information" rows="10" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{ old('information') }}</textarea>
+                                    <textarea id="information" name="information" rows="10" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{ old('information') }}</textarea>
                                     <x-input-error :messages="$errors->get('information')" class="mt-2" />
                                 </div>
                             </div>
                             <div class="p-2 w-1/2 mx-auto">
                                 <div class="relative">
                                     <label for="price" class="leading-7 text-sm text-gray-600">価格 ※必須</label>
-                                    <input type="number" id="price" name="price" value="{{ old('price') }}" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                    <input type="number" id="price" name="price" value="{{ old('price') }}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     <x-input-error :messages="$errors->get('price')" class="mt-2" />
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                             <div class="p-2 w-1/2 mx-auto">
                                 <div class="relative">
                                     <label for="quantity" class="leading-7 text-sm text-gray-600">初期在庫 ※必須</label>
-                                    <input type="number" id="quantity" name="quantity" value="{{ old('quantity') }}" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                    <input type="number" id="quantity" name="quantity" value="{{ old('quantity') }}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     <span class="text-sm">0〜99の範囲で入力してください。</span>
                                     <x-input-error :messages="$errors->get('quantity')" class="mt-2" />
                                 </div>

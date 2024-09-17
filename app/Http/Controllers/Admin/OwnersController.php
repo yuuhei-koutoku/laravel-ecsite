@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB; // QueryBuilder クエリビルダ
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rules;
+use Illuminate\Validation\Rule;
 use Throwable;
 
 class OwnersController extends Controller
@@ -108,9 +109,11 @@ class OwnersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // バリデーションを実装予定（セクション5 レクチャー63に該当する）
-        // メールアドレスがユニークなので、変更前のメールアドレスと同じ場合の処理について、検討する必要あり
-        // 「更新する」ボタンが押されてバリデーションが効いた場合、view側ではヘルパ関数oldを用いる
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('owners')->ignore($id)],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
 
         $owner = Owner::findOrFail($id);
         $owner->name = $request->name;
