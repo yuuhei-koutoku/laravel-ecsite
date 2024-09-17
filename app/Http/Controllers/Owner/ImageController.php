@@ -55,7 +55,7 @@ class ImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UploadImageRequest $request)
     {
         $imageFiles = $request->file('files');
         if (! is_null($imageFiles)) {
@@ -86,10 +86,10 @@ class ImageController extends Controller
         return view('owner.images.edit', compact('image'));
     }
 
-    public function update(UploadImageRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => ['string', 'max:50'],
+            'title' => ['nullable', 'string', 'max:50'],
         ]);
 
         $image = Image::findOrFail($id);

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UploadImageRequest;
 use App\Models\Shop;
 use App\Services\ImageService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
@@ -43,12 +43,13 @@ class ShopController extends Controller
         return view('owner.shops.edit', compact('shop'));
     }
 
-    public function update(UploadImageRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:50'],
             'information' => ['required', 'string', 'max:1000'],
-            'is_selling' => ['required'],
+            'is_selling' => ['required', 'in:0,1'],
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
         ]);
 
         $imageFile = $request->image;
