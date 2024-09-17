@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB; // QueryBuilder クエリビルダ
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Validation\Rules;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules;
 use Throwable;
 
 class OwnersController extends Controller
