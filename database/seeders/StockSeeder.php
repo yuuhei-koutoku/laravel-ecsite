@@ -24,5 +24,13 @@ class StockSeeder extends Seeder
                 ],
             ]);
         }
+        DB::table('t_stocks')->insert([
+            [
+                'product_id' => 77,
+                'user_id' => 1,
+                'type' => 3,
+                'quantity' => 1,
+            ],
+        ]);
     }
 }

@@ -5,14 +5,23 @@
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
-            {{ __('アカウントを削除すると、関連するデータが永久に削除されます。アカウントを削除すると、この操作は元に戻せません。') }}
+            {{ __('アカウントを削除すると、関連するデータは完全に消去され、復元できません。') }}
+        </p>
+        <p class="mt-1 text-sm text-gray-600">
+            {{ __('また、削除操作は取り消すことができません。') }}
         </p>
     </header>
 
-    <x-danger-button
-        x-data=""
-        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-    >{{ __('アカウントを削除') }}</x-danger-button>
+    <div class="flex items-center space-x-4">
+        <x-danger-button
+            x-data=""
+            x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
+            :user="$user"
+        >{{ __('アカウントを削除') }}</x-danger-button>
+        @if ($user->id == 1)
+            <p class="text-sm text-gray-500">ゲストユーザーはアカウントを削除できません。</p>
+        @endif
+    </div>
 
     <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
         <form method="post" action="{{ route('user.profile.destroy') }}" class="p-6">
@@ -24,10 +33,13 @@
             </h2>
 
             <p class="mt-1 text-sm text-gray-600">
-                {{ __('アカウントを削除すると、関連するデータが永久に削除されます。アカウントを削除すると、この操作は元に戻せません。') }}
+                {{ __('アカウントを削除すると、関連するデータは完全に消去され、復元できません。') }}
             </p>
             <p class="mt-1 text-sm text-gray-600">
-                {{ __('アカウントを削除する場合は、テキスト入力フィールドにパスワードを入力してください。') }}
+                {{ __('また、削除操作は取り消すことができません。') }}
+            </p>
+            <p class="mt-1 text-sm text-gray-600">
+                {{ __('アカウントを削除するには、パスワードをテキスト入力欄に入力してください。') }}
             </p>
 
             <div class="mt-6">
@@ -49,7 +61,7 @@
                     {{ __('キャンセル') }}
                 </x-secondary-button>
 
-                <x-danger-button class="ml-3">
+                <x-danger-button :user="$user" class="ml-3">
                     {{ __('アカウントを削除') }}
                 </x-danger-button>
             </div>

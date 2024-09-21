@@ -25,10 +25,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('owner.welcome');
-// });
-
 Route::prefix('shops')->
     middleware('auth:owners')->group(function () {
         Route::get('index', [ShopController::class, 'index'])->name('shops.index');
@@ -41,10 +37,6 @@ Route::resource('images', ImageController::class)
 
 Route::resource('products', ProductController::class)
     ->middleware('auth:owners')->except(['show']);
-
-// Route::get('/dashboard', function () {
-//     return view('owner.dashboard');
-// })->middleware(['auth:owners', 'verified'])->name('dashboard');
 
 Route::middleware('guest')->group(function () {
     // Route::get('register', [RegisteredUserController::class, 'create'])
@@ -92,3 +84,11 @@ Route::middleware('auth:owners')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 });
+
+// Route::get('/', function () {
+//     return view('owner.welcome');
+// });
+
+// Route::get('/dashboard', function () {
+//     return view('owner.dashboard');
+// })->middleware(['auth:owners', 'verified'])->name('dashboard');
