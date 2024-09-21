@@ -25,7 +25,7 @@ class ShopSeeder extends Seeder
             [
                 'owner_id' => 2,
                 'name' => 'Echo Merch',
-                'information' => 'このショップは音楽とファッションを融合させたグッズを展開しており、特に若者に人気です。オンライン限定でプレミアム商品も随時リリースされています。',
+                'information' => '「Echo Merch」では、音楽とファッションを融合させたグッズを展開しており、特に若者に人気です。オンライン限定でプレミアム商品も随時リリースされています。',
                 'filename' => 'shop2.jpg',
                 'is_selling' => true,
             ],
