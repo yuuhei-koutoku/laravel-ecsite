@@ -24,10 +24,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('admin.welcome');
-// });
-
 Route::resource('owners', OwnersController::class)
     ->middleware('auth:admin')->except(['show']);
 
@@ -44,10 +40,6 @@ Route::prefix('inquiries')->
         Route::post('show/{user_id}', [InquiryController::class, 'store'])->name('inquiries.store');
         Route::post('{id}/destroy', [InquiryController::class, 'softDestroy'])->name('inquiries.softDestroy');
     });
-
-// Route::get('/dashboard', function () {
-//     return view('admin.dashboard');
-// })->middleware(['auth:admin', 'verified'])->name('dashboard');
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
@@ -95,3 +87,11 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 });
+
+// Route::get('/', function () {
+//     return view('admin.welcome');
+// });
+
+// Route::get('/dashboard', function () {
+//     return view('admin.dashboard');
+// })->middleware(['auth:admin', 'verified'])->name('dashboard');
