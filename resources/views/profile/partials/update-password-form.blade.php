@@ -28,7 +28,10 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('更新') }}</x-primary-button>
+            <x-primary-button :user="$user">{{ __('更新') }}</x-primary-button>
+            @if ($user->id == 1)
+                <p class="text-sm text-gray-500">ゲストユーザーはパスワードを更新できません。</p>
+            @endif
 
             @if (session('status') === 'password-updated')
                 <p
