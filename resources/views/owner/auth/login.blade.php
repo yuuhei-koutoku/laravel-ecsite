@@ -9,7 +9,7 @@
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('メールアドレス')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" autofocus autocomplete="username" placeholder="name@example.com" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', 'owner1@example.com')" autofocus autocomplete="username" placeholder="name@example.com" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
@@ -20,6 +20,7 @@
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"
                             name="password"
+                            value="11111111"
                             autocomplete="current-password"
                             placeholder="••••••••" />
 
