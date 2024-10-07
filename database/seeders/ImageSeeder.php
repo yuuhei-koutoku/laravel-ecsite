@@ -113,22 +113,22 @@ class ImageSeeder extends Seeder
             [
                 'owner_id' => 3,
                 'filename' => 'T-shirt_17-1_3.jpg',
-                'title' => 'T-shirt_18-1_3',
+                'title' => 'T-shirt_17-1_3',
             ],
             [
                 'owner_id' => 3,
                 'filename' => 'T-shirt_17-2_3.jpg',
-                'title' => 'T-shirt_18-2_3',
+                'title' => 'T-shirt_17-2_3',
             ],
             [
                 'owner_id' => 3,
                 'filename' => 'T-shirt_18-1_3.jpg',
-                'title' => 'T-shirt_19-1_3',
+                'title' => 'T-shirt_18-1_3',
             ],
             [
                 'owner_id' => 3,
                 'filename' => 'T-shirt_18-2_3.jpg',
-                'title' => 'T-shirt_19-2_3',
+                'title' => 'T-shirt_18-2_3',
             ],
             [
                 'owner_id' => 1,
