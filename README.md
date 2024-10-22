@@ -44,7 +44,6 @@ MY FIRST STORYです。I'm a messや夢幻（鬼滅の刃 オープニング）�
 [MY FIRST STORY - REVIVER - Official Music Video](https://youtu.be/VvShHLo88_c)
 </details>
 
-<br>
 ただし、初めから音楽イベントグッズのECサイトを作ろうと思っていたわけではないです。最初は何のコンセプトもありませんでした。というのも、このアプリケーションは下記のUdemy教材をベースに作成しているからです。
 
 [【Laravel】マルチログイン機能を構築し本格的なECサイトをつくってみよう【Breeze/tailwindcss】](https://www.udemy.com/course/laravel-multi-ec)
@@ -87,6 +86,9 @@ Stripeの決済ページです。購入手続きが完了すると、ユーザ�
     -   HTML
     -   CSS
         -   Tailwind CSS 3.1.0
+    -   JavaScript
+        -   Micromodal.js 0.4.10
+        -   Swiper.js 6.7.0
 -   バックエンド
     -   PHP 8.2.0
         -   Laravel 9.52.5
@@ -96,11 +98,11 @@ Stripeの決済ページです。購入手続きが完了すると、ユーザ�
         -   Apache
     -   Visual Studio Code
     -   Git / GitHub / SourceTree（バージョン管理）
-    -   GitHub Actions（Laravel Pintの実行を自動化）
+    -   GitHub Actions（Laravel Pint実行とデプロイを自動化）
     -   Stripe（決済機能）
     -   Mailtrap（メール送信機能）
     -   AWS S3（画像保存）
-    -   Fly.io（デプロイ `main`ブランチプッシュ時に自動デプロイ）
+    -   Fly.io（`main`ブランチプッシュ時に自動デプロイ）
 
 # 機能一覧
 
@@ -263,3 +265,5 @@ XAMPP/MAMPまたは他の開発環境でDBを起動した後に`php artisan migr
 画像はAWS S3にて管理します。S3バケットを作成し、`.env`にS3の情報を追記してください。
 
 S3バケットの配下に`shops`と`products`のプレフィックス（バケット内のS3フォルダ）を作成し、それぞれのプレフィックスにデモ画像を配置してください。
+
+S3に格納したファイルに合わせて、ImageSeederやProductSeeder、ShopSeederなども修正してください。
