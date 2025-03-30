@@ -2,9 +2,8 @@
 
 namespace Tests\Feature\Http\Controllers\Admin;
 
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
 use App\Models\Owner;
+use Tests\TestCase;
 
 class OwnersControllerTest extends TestCase
 {
