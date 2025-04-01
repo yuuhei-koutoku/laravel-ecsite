@@ -3,6 +3,7 @@
 namespace Tests\Feature\Http\Controllers\Admin;
 
 use App\Models\Owner;
+use App\Models\Shop;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
@@ -64,5 +65,48 @@ class OwnersControllerTest extends TestCase
             'filename' => '',
             'is_selling' => true,
         ]);
+    }
+
+    public function test_オーナーを編集できる()
+    {
+        $this->adminLogin();
+
+        $validData = [
+            'name' => '鈴木',
+            'email' => 'suzuki@example.com',
+            'password' => 'suzuki123456',
+        ];
+
+        // オーナーとショップを作成
+        $owner = Owner::factory()->create($validData);
+        Shop::factory()->create(['owner_id' => $owner->id]);
+
+        $this->get(route('admin.owners.edit', $owner->id))
+            ->assertOk()
+            ->assertSee(['鈴木', 'suzuki@example.com']);
+
+        $ownerNewPassword = 'satou123456';
+
+        $validData = array_merge($validData, [
+            'name' => '佐藤',
+            'email' => 'satou@example.com',
+            'password' => $ownerNewPassword,
+            'password_confirmation' => $ownerNewPassword,
+        ]);
+
+        // オーナーを更新
+        $this->put(route('admin.owners.update', $owner), $validData)
+            ->assertRedirect(route('admin.owners.index'));
+
+        $this->get('admin/owners')
+            ->assertOk()
+            ->assertSee('オーナー情報を更新しました。');
+
+        unset($validData['password'], $validData['password_confirmation']);
+
+        // DBが正常に更新されたことを確認
+        $this->assertDatabaseHas('owners', $validData);
+        $this->assertTrue(Hash::check($ownerNewPassword, Owner::first()->password));
+        $this->assertDatabaseCount('owners', 1);
     }
 }
