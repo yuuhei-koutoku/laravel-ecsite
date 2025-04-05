@@ -67,7 +67,7 @@ class OwnersControllerTest extends TestCase
         ]);
     }
 
-    public function test_オーナーを編集できる()
+    public function test_オーナーの編集画面を開くことができる()
     {
         $this->adminLogin();
 
@@ -79,20 +79,35 @@ class OwnersControllerTest extends TestCase
 
         // オーナーとショップを作成
         $owner = Owner::factory()->create($validData);
-        Shop::factory()->create(['owner_id' => $owner->id]);
+        Shop::factory()->create([
+            'owner_id' => $owner->id,
+            'name' => '仮店舗',
+        ]);
 
         $this->get(route('admin.owners.edit', $owner->id))
             ->assertOk()
-            ->assertSee(['鈴木', 'suzuki@example.com']);
+            ->assertSee(['鈴木', '仮店舗', 'suzuki@example.com']);
+    }
 
-        $ownerNewPassword = 'satou123456';
+    public function test_オーナーを編集できる()
+    {
+        $this->adminLogin();
 
-        $validData = array_merge($validData, [
-            'name' => '佐藤',
-            'email' => 'satou@example.com',
-            'password' => $ownerNewPassword,
-            'password_confirmation' => $ownerNewPassword,
-        ]);
+        $ownerPassword = 'ieyasu123456';
+
+        $validData = [
+            'name' => '徳川家康',
+            'email' => 'ieyasu-tokugawa@example.com',
+            'password' => $ownerPassword,
+            'password_confirmation' => $ownerPassword,
+        ];
+
+        $owner = Owner::factory()->create();
+        Shop::factory()->create(['owner_id' => $owner->id,]);
+
+        $this->get(route('admin.owners.edit', $owner->id))
+            ->assertOk()
+            ->assertDontSee(['徳川家康', 'ieyasu-tokugawa@example.com']);
 
         // オーナーを更新
         $this->put(route('admin.owners.update', $owner), $validData)
@@ -106,7 +121,7 @@ class OwnersControllerTest extends TestCase
 
         // DBが正常に更新されたことを確認
         $this->assertDatabaseHas('owners', $validData);
-        $this->assertTrue(Hash::check($ownerNewPassword, Owner::first()->password));
+        $this->assertTrue(Hash::check($ownerPassword, Owner::first()->password));
         $this->assertDatabaseCount('owners', 1);
     }
 }
