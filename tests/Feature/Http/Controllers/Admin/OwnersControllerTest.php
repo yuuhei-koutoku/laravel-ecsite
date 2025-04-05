@@ -103,7 +103,7 @@ class OwnersControllerTest extends TestCase
         ];
 
         $owner = Owner::factory()->create();
-        Shop::factory()->create(['owner_id' => $owner->id,]);
+        Shop::factory()->create(['owner_id' => $owner->id]);
 
         $this->get(route('admin.owners.edit', $owner->id))
             ->assertOk()
