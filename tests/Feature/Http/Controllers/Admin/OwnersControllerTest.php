@@ -133,7 +133,7 @@ class OwnersControllerTest extends TestCase
         $owner = Owner::factory()->create();
         Shop::factory()->create(['owner_id' => $owner->id]);
 
-        $this->assertDatabaseHas('owners',['deleted_at' => null]);
+        $this->assertDatabaseHas('owners', ['deleted_at' => null]);
 
         // オーナーを削除
         $this->delete(route('admin.owners.destroy', $owner))
@@ -148,6 +148,6 @@ class OwnersControllerTest extends TestCase
         $this->assertDatabaseCount('shops', 1);
 
         // オーナーの論理削除されたことを確認
-        $this->assertDatabaseMissing('owners',['deleted_at' => null]);
+        $this->assertDatabaseMissing('owners', ['deleted_at' => null]);
     }
 }
