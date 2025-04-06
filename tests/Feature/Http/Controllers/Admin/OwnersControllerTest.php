@@ -124,4 +124,30 @@ class OwnersControllerTest extends TestCase
         $this->assertTrue(Hash::check($ownerPassword, Owner::first()->password));
         $this->assertDatabaseCount('owners', 1);
     }
+
+    public function test_オーナーを削除できる()
+    {
+        $this->adminLogin();
+
+        // オーナーとショップを作成
+        $owner = Owner::factory()->create();
+        Shop::factory()->create(['owner_id' => $owner->id]);
+
+        $this->assertDatabaseHas('owners',['deleted_at' => null]);
+
+        // オーナーを削除
+        $this->delete(route('admin.owners.destroy', $owner))
+            ->assertRedirect(route('admin.owners.index'));
+
+        $this->get('admin/owners')
+            ->assertOk()
+            ->assertSee('オーナー情報を削除しました。');
+
+        // 処理としてはオーナーの論理削除のみなので、レコードが残っていることを確認
+        $this->assertDatabaseCount('owners', 1);
+        $this->assertDatabaseCount('shops', 1);
+
+        // オーナーの論理削除されたことを確認
+        $this->assertDatabaseMissing('owners',['deleted_at' => null]);
+    }
 }
