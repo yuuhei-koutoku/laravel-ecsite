@@ -85,13 +85,14 @@ Stripeの決済ページです。購入手続きが完了すると、ユーザ�
 -   フロントエンド
     -   HTML
     -   CSS
-        -   Tailwind CSS 3.1.0
+        -   Tailwind CSS 3.4.9
     -   JavaScript
         -   Micromodal.js 0.4.10
-        -   Swiper.js 6.7.0
+        -   Swiper.js 6.8.4
 -   バックエンド
-    -   PHP 8.2.0
-        -   Laravel 9.52.5
+    -   PHP 8.2.17
+        -   Laravel 9.52.16
+        -   PHPUnit 9.6.20
 -   その他
     -   MAMP
         -   MySQL 5.7.39
